@@ -55,7 +55,7 @@ div.speechbubble {
   width: 300px;
   min-height: 60px;
   border-width: 2px;
-  border-radius: 32px;
+  border-radius: 24px;
   border-color: black;
   border-style: solid;
   white-space: normal;
@@ -93,6 +93,8 @@ li.choice {
   border-color: rgba(0, 0, 0, 0.6);
   color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
+  padding: 1px;
+  margin-bottom: 2px;
 }
 
 li.choice:hover, li.choice.selected {

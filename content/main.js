@@ -28,27 +28,6 @@ function createSpeechBubble (panel, speaker, isResponse) {
 function reflowPage () {
 };
 
-/*
-  <div class="panel" id="panel1">
-    <div class="speechbubble a call">
-      So here I was, stranded in the grand canyon without a saddle for my horse...
-    </div>
-    <div class="speechbubble b response">
-      <li class="choice" id="choice1">Do you ride horses often?</li>
-      <li class="choice" id="choice2">Why not ride bareback?</li>
-      <li class="choice selected" id="choice3">It must have been a long climb out of the canyon...</li>
-    </div>
-  </div>
-  <div class="panel" id="panel2">
-    <div class="speechbubble b call">
-      It must have been a long climb out of the canyon...
-    </div>
-    <div class="speechbubble a response">
-      It was nearly sunset by the time I dragged that feisty mare up the slopes and found my way back to the visitor center.
-    </div>
-  </div>
-*/
-
 function makeTestComic () {
   var page = $(".comicpage");
   var panel1 = createPanel(page, 1);
