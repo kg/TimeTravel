@@ -3,33 +3,21 @@
   <head>
     <title>The Time Travelers</title>
     <link rel="stylesheet" href="style.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="main.js"></script>
   </head>
   <body>
     <div class="comicpage">
-      <div class="panel" id="panel1">
-        <div class="speechbubble a call">
-          So here I was, stranded in the grand canyon without a saddle for my horse...
-        </div>
-        <div class="speechbubble b response">
-          <li class="choice" id="choice1">Do you ride horses often?</li>
-          <li class="choice" id="choice2">Why not ride bareback?</li>
-          <li class="choice selected" id="choice3">It must have been a long climb out of the canyon...</li>
-        </div>
+    </div>
+
+    <div id="templates">
+      <div class="panel" id="panel_template">
       </div>
-      <div class="panel" id="panel2">
-        <div class="speechbubble b call">
-          It must have been a long climb out of the canyon...
-        </div>
-        <div class="speechbubble a response">
-          It was nearly sunset by the time I dragged that feisty mare up the slopes and found my way back to the visitor center.
-        </div>
+
+      <div class="speechbubble" id="speechbubble_template">
       </div>
-      <br>
-      <div class="panel" id="panel3">
-      </div>
-      <div class="panel" id="panel4">
-      </div>
+
+      <li class="choice" id="choice_template"></li>
     </div>
   </body>
 </html>

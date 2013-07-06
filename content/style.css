@@ -92,10 +92,15 @@ li.choice {
   border-radius: 6px;
   border-color: rgba(0, 0, 0, 0.6);
   color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
 }
 
 li.choice:hover, li.choice.selected {
   background-color: white;
   border-color: rgba(0, 0, 0, 0.8);
   color: rgba(0, 0, 0, 1);
+}
+
+div#templates {
+  display: none;
 }
