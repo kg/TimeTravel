@@ -81,12 +81,6 @@ Panel.prototype.showChoice = function (text, flagsToSet) {
   return this;
 };
 
-// Says a previous panel's choice in a speech bubble (provide the name of the panel) 
-Panel.prototype.sayPreviousChoice = function (panelName) {
-  // FIXME
-  return this;
-};
-
 // Lists out the names of one or more flags that must be set for this panel to appear
 // Put a '!' before the flag name to require it not to be set (like !foo)
 Panel.prototype.setPrerequisites = function (/* ... prerequisites ... */) {
