@@ -3,7 +3,7 @@ html, body {
   padding: 0px;
   background-color: white;
   color: black;
-  font-family: Calibri, Tahoma, Verdana, sans-serif;
+  font-family: Candara, Times New Roman, serif;
   font-size: 16pt;
 }
 
@@ -33,6 +33,7 @@ div.comicpage {
 }
 
 div.panel {
+  position: relative;
   display: inline-block;
   clear: none;
   padding: 0px;
@@ -45,5 +46,56 @@ div.panel {
   border-radius: 0px;
   border-color: black;
   border-style: solid;
-  font-size: 16pt;
+  font-size: 14pt;
+}
+
+div.speechbubble {
+  padding: 12px;
+  margin: 0px;
+  width: 300px;
+  min-height: 60px;
+  border-width: 2px;
+  border-radius: 32px;
+  border-color: black;
+  border-style: solid;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+div.speechbubble.a {
+  position: absolute;
+  background-color: rgba(250, 200, 190, 0.8);
+  left: 16px;
+}
+
+div.speechbubble.b {
+  position: absolute;
+  background-color: rgba(200, 240, 230, 0.8);
+  left: 72px;
+}
+
+div.speechbubble.call {
+  top: 16px;
+}
+
+div.speechbubble.response {
+  top: 120px;
+}
+
+li.choice {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 12pt;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  border-color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+li.choice:hover, li.choice.selected {
+  background-color: white;
+  border-color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 1);
 }
