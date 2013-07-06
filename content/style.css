@@ -49,6 +49,25 @@ div.panel {
   font-size: 14pt;
 }
 
+div.actors, div.bubbles {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: hidden;
+  padding: 0px;
+  margin: 0px;
+}
+
+div.actors {
+  z-index: 1;
+}
+
+div.bubbles {
+  z-index: 2;
+}
+
 div.speechbubble {
   padding: 12px;
   margin: 0px;
