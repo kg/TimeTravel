@@ -1,0 +1,49 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  background-color: white;
+  color: black;
+  font-family: Calibri, Tahoma, Verdana, sans-serif;
+  font-size: 16pt;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+div.comicpage {
+  width: 816px;
+  padding: 4px;
+  margin-top: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: black;
+  border-style: solid;
+  /* css is awful and the only way to disable divs floating to 
+     the left is to disable whitespace and wrapping entirely.
+     this means we will have to wrap elements ourselves in js. :|
+  */
+  white-space: nowrap;
+  font-size: 0pt;
+  overflow: hidden;
+}
+
+div.panel {
+  display: inline-block;
+  clear: none;
+  padding: 0px;
+  margin: 0px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  width: 400px;
+  height: 400px;
+  border-width: 4px;
+  border-radius: 0px;
+  border-color: black;
+  border-style: solid;
+  font-size: 16pt;
+}
