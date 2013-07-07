@@ -1,8 +1,16 @@
 var gameState = null;
 
+function resetGame () {
+  var viewport = $(".viewport");
+  var previousHeight = (viewport.get()[0]).offsetHeight;
+  viewport.css("min-height", previousHeight + "px");
+  newGame(gameState.playerActorName);
+};
+
 function newGame (playerActorName) {
   $(".viewport").html("");
   gameState = new GameState(playerActorName);
+  playScript("intro-" + playerActorName);
 };
 
 function $makeWrappedListener (listener, notification) {
@@ -113,14 +121,14 @@ function playScript (scriptName) {
 function init () {
   $(".loading").fadeOut(250);
 
+  $("#reset").click(resetGame);
+
   $("#actor_rajar").click(function () {
     newGame("rajar");
-    playScript("intro-rajar");
   });
 
   $("#actor_sofia").click(function () {
     newGame("sofia");
-    playScript("intro-sofia");
   });
 };
 

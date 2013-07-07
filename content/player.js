@@ -1,5 +1,5 @@
 NextPanelDelay = 10;
-NextScriptDelay = 500;
+NextScriptDelay = 100;
 
 function ScriptPlayer (script, gameState) {
   this.script = script;
