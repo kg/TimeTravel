@@ -8,6 +8,7 @@ function Script (scriptName) {
   this.name = scriptName;
   this.panels = [];
   this.panelsByName = [];
+  this.nextScript = null;
 
   allScripts[scriptName] = this;
 };
@@ -18,6 +19,10 @@ Script.prototype.addPanel = function (panelName) {
   if (panelName)
     this.panelsByName[panelName] = panel;
   return panel;
+};
+
+Script.prototype.setNextScript = function (scriptName) {
+  this.nextScript = scriptName;
 };
 
 

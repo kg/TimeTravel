@@ -1,3 +1,6 @@
+NextPanelDelay = 10;
+NextScriptDelay = 500;
+
 function ScriptPlayer (script, gameState) {
   this.script = script;
   this.gameState = gameState;
@@ -13,11 +16,17 @@ ScriptPlayer.prototype.play = function () {
   this.previousPanel = null;
   this.page.html("");
 
-  while (this.currentPanelIndex < this.script.panels.length)
-    this.nextPanel();
+  window.setTimeout(this.nextPanel.bind(this), NextPanelDelay);
+};
+
+ScriptPlayer.prototype.playNextScript = function () {
+  // FIXME: Do something if there is no next script
+  if (this.nextScript)
+    playScript(this.nextScript);
 };
 
 ScriptPlayer.prototype.ended = function () {
+  window.setTimeout(this.playNextScript.bind(this), NextScriptDelay);
 };
 
 ScriptPlayer.prototype.nextPanel = function () {
@@ -30,6 +39,7 @@ ScriptPlayer.prototype.nextPanel = function () {
   }
 
   if (!panel.$checkPrerequisites(this.gameState)) {
+    this.nextPanel();
     return;
   }
 
@@ -91,5 +101,5 @@ ScriptPlayer.prototype.nextPanel = function () {
 
   this.previousPanel = displayPanel;
 
-  this.nextPanel();
+  window.setTimeout(this.nextPanel.bind(this), NextPanelDelay);
 };
