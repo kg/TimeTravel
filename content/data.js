@@ -107,20 +107,32 @@ Panel.prototype.$showChoice = function (text, isDefault, flagsToSet) {
 // Lists out the names of one or more flags that must be set for this panel to appear
 // Put a '!' before the flag name to require it not to be set (like !foo)
 Panel.prototype.setPrerequisites = function (/* ... prerequisites ... */) {
-  this.prerequisites = Array.prototype.slice(arguments);
+  this.prerequisites = Array.prototype.slice.call(arguments);
   return this;
 };
 
 Panel.prototype.$checkPrerequisites = function (gameState) {
   for (var i = 0; i < this.prerequisites.length; i++) {
-    var inverted = false;
+    var expected = true;
     var prereq = this.prerequisites[i];
     if (prereq.indexOf("!") === 0) {
-      inverted = true;
+      expected = false;
       prereq = prereq.substr(1);
     }
 
-    console.log(prereq + " inverted=" + inverted);
+    var equals = prereq.indexOf("=");
+    if (equals >= 0) {
+      var parts = prereq.split("=");
+      var key = parts[0].trim();
+      var value = parts[1].trim();
+
+      if (gameState.getChoice(key) !== value)
+        return false;
+    } else {
+      var found = gameState.getFlag(prereq);
+      if (found !== expected)
+        return false;
+    }
   }
 
   return true;
