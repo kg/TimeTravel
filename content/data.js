@@ -151,16 +151,19 @@ Panel.prototype.showChoice = function (dict) {
 
         if (!existingChoiceKey) {
           textElt.text(dict.dialogue);
-          textElt.addClass("showchoices");
-          textElt.click(makeShowChoicesHandler(this.commandState.bubble));
         } else {
           textElt.text(existingChoice.dialogue);
+        }
+
+        if (!existingChoiceKey || true) {
+          textElt.addClass("showchoices");
+          textElt.click(makeShowChoicesHandler(this.commandState.bubble));
         }
       }
 
       if (existingChoiceKey == dict.key) {
         choice.addClass("selected");
-      } else if (existingChoiceKey) {
+      } else if (existingChoiceKey && false) {
         choice.addClass("disabled");
       } else {
         choice.click(makeChoiceHandler(player, this.name, dict.key, dict.flags));
