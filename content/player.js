@@ -119,7 +119,7 @@ ScriptPlayer.prototype.nextPanel = function () {
 
   // If no bubbles appeared (because there are no valid choices
   //  in this panel due to flags/prerequisites) then abort this scene.
-  if (bubbleCount === 0) {
+  if ((bubbleCount === 0) && (!panel.hasSize)) {
     console.log("Panel '" + panel.name + "' has no content");
     this.nextPanel();
     return;

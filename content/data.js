@@ -41,6 +41,7 @@ function Panel (script, panelName) {
   this.commands = [];
   this.prerequisites = [];
   this.isReset = false;
+  this.hasSize = false;
 };
 
 // Resets anything that would have otherwise carried over from the last panel
@@ -206,6 +207,17 @@ Panel.prototype.setClass = function (className) {
   });
   return this;  
 };
+
+Panel.prototype.setSize = function (width, height) {
+  this.hasSize = true;
+
+  this.commands.push(function (displayPanel, player) {
+    displayPanel.css("width", width + "px");
+    displayPanel.css("height", height + "px");
+  });
+
+  return this;  
+};  
 
 
 Panel.prototype.$checkPrerequisites = function (gameState) {

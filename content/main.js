@@ -58,8 +58,6 @@ function updateTurnDisplay () {
   var buttonTexts = [
     "Oh boy! I can't wait.",
     "How exciting!",
-    "Not again :(",
-    "When will this end?!",
     "Let's do this!",
     "Onward.",
     "Step aside, spacetime!",
