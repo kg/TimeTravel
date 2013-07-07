@@ -136,6 +136,12 @@ div#templates {
 
 .actorchoice {
   padding: 6px;
+  z-index: 998;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
 }
 
 .actorchoice, .actorchoice button {

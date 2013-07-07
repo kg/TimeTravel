@@ -1,7 +1,10 @@
 function ScriptPlayer (script, gameState) {
   this.script = script;
   this.gameState = gameState;
-  this.page = $(".comicpage");
+
+  this.page = $("#page_template").clone();
+  this.page.attr("id", null);
+  this.page.appendTo($(".viewport"));
 };
 
 ScriptPlayer.prototype.play = function () {

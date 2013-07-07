@@ -1,6 +1,7 @@
 var gameState = null;
 
 function newGame (playerActorName) {
+  $(".viewport").html("");
   gameState = new GameState(playerActorName);
 };
 
@@ -88,10 +89,15 @@ function playScript (scriptName) {
   function playTheScript () {
     var player = new ScriptPlayer(script, gameState);
     player.play();
+    $(".actorchoice").fadeOut(500);
   };
 
   if (!script) {
+    $(".loading").fadeIn(250);
+
     loadGlobalScript(scriptUri, function (elt, error) {
+      $(".loading").fadeOut(250);
+
       script = allScripts[scriptName];
       if (error || !script) {
         alert("Failed to load script '" + scriptName + "': " + error);
@@ -105,6 +111,8 @@ function playScript (scriptName) {
 };
 
 function init () {
+  $(".loading").fadeOut(250);
+
   $("#actor_rajar").click(function () {
     newGame("rajar");
     playScript("intro-rajar");

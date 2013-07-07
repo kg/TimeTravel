@@ -4,6 +4,7 @@
     <title>The Time Travelers</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="loading.css">
     <link rel="stylesheet" href="content-styles.css">
 
     <script src="jquery.min.js"></script>
@@ -18,10 +19,23 @@
       <button id="actor_rajar">Rajar</button>
       <button id="actor_sofia">Sofia</button>
     </div>
-    <div class="comicpage">
+
+    <div class="loading">
+      <div id="circleG_1" class="circleG">
+      </div>
+      <div id="circleG_2" class="circleG">
+      </div>
+      <div id="circleG_3" class="circleG">
+      </div>
+    </div>
+
+    <div class="viewport">
     </div>
 
     <div id="templates">
+      <div class="comicpage" id="page_template">
+      </div>
+
       <div class="panel" id="panel_template">
         <div class="actors"></div>
         <div class="bubbles"></div>
