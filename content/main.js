@@ -95,7 +95,10 @@ function playScript (scriptName) {
   var script = allScripts[scriptName];
 
   function playTheScript () {
-    var player = new ScriptPlayer(script, gameState);
+    var player = gameState.scriptPlayerInstances[scriptName];
+    if (!player)
+      player = gameState.scriptPlayerInstances[scriptName] = new ScriptPlayer(script, gameState);
+    
     player.play();
     $(".actorchoice").fadeOut(500);
   };

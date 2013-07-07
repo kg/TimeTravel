@@ -31,6 +31,7 @@ function Panel (script, panelName) {
   this.name = panelName || null;
   this.commandState = {};
   this.choices = {};
+  this.preCommands = [];
   this.commands = [];
   this.prerequisites = [];
   this.isReset = false;
@@ -56,6 +57,16 @@ Panel.prototype.setBackground = function (imageUri) {
 Panel.prototype.showActor = function (actorName, imageUri) {
   this.commands.push(function (displayPanel) {
     displayPanel.getActor(actorName)
+      .attr("src", "actors/" + imageUri);
+  });
+  return this;
+};
+
+// Shows an actor named actorName and gives them the specified image
+// Put the image in actors/
+Panel.prototype.setActorMood = function (actorName, imageUri) {
+  this.commands.push(function (displayPanel) {
+    displayPanel.getActor(actorName + "_mood")
       .attr("src", "actors/" + imageUri);
   });
   return this;
@@ -90,15 +101,28 @@ Panel.prototype.sayText = function (text) {
 // Shows a choice in a speech bubble. 
 // dict: {
 //   [default: true],
-//   [prerequisites: (string | array[string])]
+//   [prerequisites: (string | array[string])] -- prerequisites to show this choice
 //   key: string,
 //   label: string,
 //   dialogue: string,
-//   [flags: (string | array[string])]
+//   [flags: (string | array[string])], -- sets one or more flags when this is chosen
+//   [mood: imageUri] -- sets mood of speaker
 // }
 // You can pass in a flag name to set a flag when the player chooses this.
 Panel.prototype.showChoice = function (dict) {
   this.choices[dict.key] = dict;
+
+  this.preCommands.push(function (displayPanel, player) {
+    if (!player.gameState.check(dict.prerequisites))
+      return;
+
+    var isMakingChoice = this.commandState.speaker === player.gameState.playerActorName;
+
+    if (dict.default) {
+      player.gameState.setDefaultChoice(this.name, dict.key);
+      player.gameState.setDefaultFlags(dict.flags);
+    }
+  });
 
   this.commands.push(function (displayPanel, player) {
     if (!player.gameState.check(dict.prerequisites))
@@ -107,24 +131,22 @@ Panel.prototype.showChoice = function (dict) {
     if (!this.commandState.bubble)
       this.commandState.bubble = displayPanel.addSpeechBubble(this.commandState.speaker);
 
-    var existingChoiceKey = player.gameState.getChoice(this.name);
+    var isMakingChoice = this.commandState.speaker === player.gameState.playerActorName;
+    var existingChoiceKey = player.gameState.getChoice(this.name, !isMakingChoice);
     var existingChoice = null;
 
     if (existingChoiceKey)
       existingChoice = this.choices[existingChoiceKey] || null;
 
-    if (this.commandState.speaker !== player.gameState.playerActorName) {
+    if (!isMakingChoice) {
       if (!dict.default && (existingChoiceKey !== dict.key))
         return;
 
-      player.gameState.setDefault(this.name, dict.key);
       this.commandState.bubble.children(".text").text(dict.dialogue);
     } else {
       var choice = this.commandState.bubble.addChoice(dict.label);
 
       if (dict.default) {
-        player.gameState.setDefault(this.name, dict.key);
-        
         var textElt = this.commandState.bubble.children(".text");
 
         if (!existingChoiceKey) {

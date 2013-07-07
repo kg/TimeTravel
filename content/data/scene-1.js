@@ -4,13 +4,13 @@
 
   script.addPanel("Cell_01_01")
     .setBackground("background_P2.png")
-    .showActor("mood", "rajar_P2_normal.png")
+    .setActorMood("rajar", "rajar_P2_normal.png")
 
     .setSpeaker("rajar")
     .showChoice({
       key: "R_01",
       label: "Ask about meeting at convention",
-      dialogue: "It was great meeting you at the Dr Who Convention. Did you enjoy it?"
+      dialogue: "It was great meeting you at the Doctor Who Convention. Did you enjoy it?"
     })
     .showChoice({
       key: "R_02",
@@ -22,7 +22,7 @@
 
   script.addPanel("Cell_01_02")
     .setBackground("background_P1.png")
-    .showActor("mood", "sofia_P1_normal.png")
+    .setActorMood("sofia", "sofia_P1_normal.png")
 
     .setSpeaker("sofia")
     .showChoice({
@@ -55,4 +55,47 @@
     });
 
 
+  script.addPanel("Cell_01_03")
+    .setSpeaker("sofia")
+    .showChoice({
+      prerequisites: "Cell_01_02=S_01",
+      key: "S_01",
+      label: "Loved the panel",
+      dialogue: "I loved Prof. Tom Baker's panel!",
+      flags: "!AWK1"
+    })
+    .showChoice({
+      prerequisites: "Cell_01_02=S_01",
+      key: "S_02",
+      label: "Awesome",
+      dialogue: "It was so awesome! I helped my ex give his talk.",
+      default: true,
+      flags: "AWK1"
+    })
+    .showChoice({
+      prerequisites: "Cell_01_02=S_03",
+      key: "S_03",
+      label: "The service",
+      dialogue: "The service is awesome.",
+      flags: "!AWK1"
+    })
+    .showChoice({
+      prerequisites: "Cell_01_02=S_03",
+      key: "S_04",
+      label: "Ambiance",
+      dialogue: "My ex really liked the ambiance.",
+      default: true,
+      flags: "AWK1"
+    });
+
+
+  script.addPanel("Cell_01_04")
+    .setPrerequisites("AWK1")
+    .reset()
+    .setBackground("background_P3.png")
+
+    .sayText("The mood has gotten awkward...");
+
+
+  script.setNextScript("scene-2");
 })();

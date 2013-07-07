@@ -1,26 +1,29 @@
 function GameState (playerActorName) {
   this.playerActorName = playerActorName;
   this.choices = Object.create(null);
-  this.defaults = Object.create(null);
+  this.defaultChoices = Object.create(null);
   this.flags = Object.create(null);
+  this.defaultFlags = Object.create(null);
+  this.scriptPlayerInstances = Object.create(null);
 };
 
-GameState.prototype.getChoice = function (choiceName) {
+// includeDefaults is true by default
+GameState.prototype.getChoice = function (choiceName, includeDefaults) {
   var choice = this.choices[choiceName];
-  if (!choice)
-    choice = this.defaults[choiceName];
+  if (!choice && (includeDefaults !== false))
+    choice = this.defaultChoices[choiceName];
   if (!choice)
     choice = null;
 
-  console.log("getChoice(" + choiceName + ")=" + choice);
+  console.log("getChoice(" + choiceName + ", " + !!includeDefaults + ")=" + choice);
 
   return choice;
 };
 
-GameState.prototype.setDefault = function (choiceName, value) {
-  this.defaults[choiceName] = value;
+GameState.prototype.setDefaultChoice = function (choiceName, value) {
+  this.defaultChoices[choiceName] = value;
 
-  console.log("defaults=" + JSON.stringify(this.defaults));
+  console.log("defaultChoices=" + JSON.stringify(this.defaultChoices));
 };
 
 GameState.prototype.setChoice = function (choiceName, value) {
@@ -30,7 +33,15 @@ GameState.prototype.setChoice = function (choiceName, value) {
 };
 
 GameState.prototype.getFlag = function (flagName) {
-  return (this.flags[flagName] === true);
+  var flag = this.flags[flagName];
+  if (typeof (flag) === "undefined")
+    flag = this.defaultFlags[flagName];
+  if (typeof (flag) === "undefined")
+    flag = null;
+
+  console.log("getFlag(" + flagName + ")=" + flag);
+
+  return flag;
 };
 
 GameState.prototype.setFlag = function (flagName, state) {
@@ -39,9 +50,21 @@ GameState.prototype.setFlag = function (flagName, state) {
   console.log("flags=" + JSON.stringify(this.flags));
 };
 
-GameState.prototype.setFlags = function (list) {
+GameState.prototype.setDefaultFlag = function (flagName, state) {
+  this.defaultFlags[flagName] = state;
+
+  console.log("defaultFlags=" + JSON.stringify(this.defaultFlags));
+};
+
+GameState.prototype.setDefaultFlags = function (list) {
+  this.setFlags(list, true);
+};
+
+GameState.prototype.setFlags = function (list, isDefault) {
   if (typeof (list) === "string")
     list = [list];
+  if (!list || !list.length)
+    return;
 
   for (var l = list.length, i = 0; i < l; i++) {
     var value = true;
@@ -52,7 +75,10 @@ GameState.prototype.setFlags = function (list) {
       flagName = flagName.substr(1);
     }
 
-    this.setFlag(flagName, value);
+    if (isDefault === true)
+      this.setDefaultFlag(flagName, value);
+    else
+      this.setFlag(flagName, value);
   }
 };
 

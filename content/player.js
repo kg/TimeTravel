@@ -1,5 +1,5 @@
-NextPanelDelay = 10;
-NextScriptDelay = 100;
+NextPanelDelay = 0;
+NextScriptDelay = 50;
 
 function ScriptPlayer (script, gameState) {
   this.script = script;
@@ -89,8 +89,20 @@ ScriptPlayer.prototype.nextPanel = function () {
     return bubble;
   };
 
+  for (var c = panel.preCommands, l = c.length, i = 0; i < l; i++) {
+    c[i].call(panel, displayPanel, this);
+  }
+
   for (var c = panel.commands, l = c.length, i = 0; i < l; i++) {
     c[i].call(panel, displayPanel, this);
+  }
+
+  // If no bubbles appeared (because there are no valid choices
+  //  in this panel due to flags/prerequisites) then abort this scene.
+  if (bubbleCount === 0) {
+    console.log("Panel '" + panel.name + "' has no content");
+    this.nextPanel();
+    return;
   }
 
   if (
