@@ -77,15 +77,32 @@ Panel.prototype.showChoice = function (text, flagsToSet) {
   return this.$showChoice(text, false, flagsToSet);
 };
 
+function makeChoiceHandler (player, choiceName, choice, flagsToSet) {
+  return function () {
+    player.gameState.setChoice(choiceName, choice);
+
+    if (flagsToSet) {
+      if (typeof (flagsToSet) === "string") {
+        player.gameState.setFlag(flagsToSet);
+      } else {
+        for (var l = flagsToSet.length, i = 0; i < l; i++)
+          player.gameState.setFlag(flagsToSet[i]);
+      }
+    }
+
+    player.play();
+  };
+};
+
 // Shows a choice in a speech bubble. 
 // You can pass in a flag name to set a flag when the player chooses this.
 Panel.prototype.$showChoice = function (text, isDefault, flagsToSet) {
-  this.commands.push(function (displayPanel, gameState) {
+  this.commands.push(function (displayPanel, player) {
     if (!this.commandState.bubble)
       this.commandState.bubble = displayPanel.addSpeechBubble(this.commandState.speaker);
 
-    var existingChoice = gameState.getChoice(this.name);
-    if (this.commandState.speaker !== gameState.playerActorName) {
+    var existingChoice = player.gameState.getChoice(this.name);
+    if (this.commandState.speaker !== player.gameState.playerActorName) {
       if (!isDefault && (existingChoice !== text))
         return;
 
@@ -97,8 +114,9 @@ Panel.prototype.$showChoice = function (text, isDefault, flagsToSet) {
         choice.addClass("selected");
       } else if (existingChoice) {
         choice.addClass("disabled");
+      } else {
+        choice.click(makeChoiceHandler(player, this.name, text, flagsToSet));
       }
-      // FIXME: flagsToSet
     }
   });
   return this;

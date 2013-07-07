@@ -117,14 +117,19 @@ li.choice {
 }
 
 li.choice.disabled {
-  border-color: rgba(0, 0, 0, 0.2);
-  color: rgba(0, 0, 0, 0.4);
+  background-color: transparent !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
+  color: rgba(0, 0, 0, 0.4) !important;
 }
 
 li.choice:hover, li.choice.selected {
   background-color: white;
   border-color: rgba(0, 0, 0, 0.8);
   color: rgba(0, 0, 0, 1);
+}
+
+li.choice.disabled, li.choice.selected {
+  cursor: default !important;
 }
 
 div#templates {

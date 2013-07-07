@@ -2,12 +2,11 @@ function ScriptPlayer (script, gameState) {
   this.script = script;
   this.gameState = gameState;
   this.page = $(".comicpage");
-
-  this.currentPanelIndex = -1;
-  this.displayedPanelCount = 0;
 };
 
 ScriptPlayer.prototype.play = function () {
+  this.currentPanelIndex = -1;
+  this.displayedPanelCount = 0;
   this.previousPanel = null;
   this.page.html("");
 
@@ -72,7 +71,7 @@ ScriptPlayer.prototype.nextPanel = function () {
   };
 
   for (var c = panel.commands, l = c.length, i = 0; i < l; i++) {
-    c[i].call(panel, displayPanel, this.gameState);
+    c[i].call(panel, displayPanel, this);
   }
 
   if (
