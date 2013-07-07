@@ -16,20 +16,14 @@
     <script src="state.js"></script>
   </head>
   <body>
-    <div id="buttons">
-      <button id="endTurn">End Turn</button>
-      <button id="reset">Reset Choices</button>
-      <button id="chooseActor">New Game</button>
-    </div>
-
     <div class="viewport">
     </div>
 
     <div class="introcontainer">
       <div class="introimage">
-        <img src="images/introStart_sofia.png" id="sofia_intro">
+        <img src="images/introStart_sofia.png" id="sofia_intro"style="display: none">
 
-        <img src="images/introStart_rajar.png" id="rajar_intro">
+        <img src="images/introStart_rajar.png" id="rajar_intro"style="display: none">
       </div>
 
       <br><br>
@@ -60,6 +54,10 @@
       </div>
       <div id="circleG_3" class="circleG">
       </div>
+    </div>
+
+    <div id="buttons" style="display: none">
+      <button id="endTurn">End Turn</button>
     </div>
 
     <div id="templates">

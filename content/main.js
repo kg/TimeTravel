@@ -1,4 +1,5 @@
 var gameState = null;
+var seenIntros = Object.create(null);
 
 function resetGame (evt) {
   evt.preventDefault();
@@ -16,27 +17,42 @@ function resetViewport () {
     gameState.scriptPlayerInstances = Object.create(null);
 };
 
+function showIntro () {
+  seenIntros[gameState.playerActorName] = true;
+  $("#" + gameState.playerActorName + "_intro").css("display", "block");
+  $(".introcontainer").fadeIn(250);
+  $(".actorchoice").fadeOut(250);
+  $(".turndisplay").fadeOut(250);
+  $("html").css("overflow", "hidden");
+  $(".introcontainer").get()[0].scrollTop = 0;
+};
+
 function closeIntro (evt) {
   evt.preventDefault();
 
   $(".introcontainer").fadeOut(250);
+
   window.setTimeout(function () {
-    $(".introimage").html("");
+    $(".introimage img").css("display", "none");
     $("html").css("overflow", "auto");
+    playScript("intro-" + gameState.playerActorName);
   }, 250);
 };
 
 function beginTurn (evt) {
   $("#buttons").css("display", "none");
-  evt.preventDefault();
+  $("html").css("overflow", "hidden");
+  if (evt)
+    evt.preventDefault();
 
   resetViewport();
-  playScript("intro-" + gameState.playerActorName);
+  if (!seenIntros[gameState.playerActorName])
+    showIntro();
+  else
+    playScript("intro-" + gameState.playerActorName);
 };
 
-function endTurn (evt) {
-  evt.preventDefault();
-
+function updateTurnDisplay () {
   var buttonTexts = [
     "Oh boy! I can't wait.",
     "How exciting!",
@@ -53,7 +69,14 @@ function endTurn (evt) {
   ];
 
   $("#beginTurn").text(buttonText);
-  $(".turndisplay").fadeIn(500);
+
+  window.location.hash = "#" + gameState.playerActorName;
+  var cappedName = gameState.playerActorName[0].toUpperCase() + gameState.playerActorName.substr(1);
+  $("#playerName").text(cappedName);
+};
+
+function endTurn (evt) {
+  evt.preventDefault();
 
   if (gameState.playerActorName === "rajar") {
     gameState.playerActorName = "sofia";
@@ -61,9 +84,11 @@ function endTurn (evt) {
     gameState.playerActorName = "rajar";
   }
 
-  window.location.hash = "#" + gameState.playerActorName;
-  var cappedName = gameState.playerActorName[0].toUpperCase() + gameState.playerActorName.substr(1);
-  $("#playerName").text(cappedName);
+  updateTurnDisplay();
+
+  $("#buttons").css("display", "none");
+  $("html").css("overflow", "hidden");
+  $(".turndisplay").fadeIn(500);
 };
 
 function chooseActor (evt) {
@@ -79,7 +104,9 @@ function newGame (playerActorName) {
 
   window.location.hash = "#" + playerActorName;
   gameState = new GameState(playerActorName);
-  playScript("intro-" + playerActorName);
+
+  updateTurnDisplay();
+  $(".actorchoice").fadeOut(250);
 };
 
 function $makeWrappedListener (listener, notification) {
@@ -216,7 +243,6 @@ function init () {
 
   if (window.location.hash.trim().length > 1) {
     newGame(window.location.hash.substr(1));
-    $(".turndisplay").fadeOut(1);
   }
 };
 

@@ -159,14 +159,6 @@ div#templates {
   bottom: 0px;
 }
 
-.turndisplay {
-  z-index: 997;
-}
-
-.actorchoice {
-  z-index: 998;
-}
-
 button {
   background-color: black;
   border-color: white;
@@ -202,38 +194,20 @@ button {
 
 #buttons {
   position: fixed;
-  top: 0px;
   left: 0px;
-  width: 96px;
-  height: 256px;
-  z-index: 996;
-}
-
-#reset {
-  position: fixed;
-  top: 74px;
-  left: 2px;
-  width: 96px;
-  height: 48px;
-  font-size: 8pt;
-}
-
-#chooseActor {
-  position: fixed;
-  top: 126px;
-  left: 2px;
-  width: 96px;
-  height: 48px;
-  font-size: 8pt;
+  right: 0px;
+  bottom: 0px;
+  padding-bottom: 8px;
+  z-index: 995;
 }
 
 #endTurn {
-  position: fixed;
-  top: 2px;
-  left: 2px;
-  width: 96px;
-  height: 48px;
-  font-size: 8pt;
+  width: 150px;
+  min-height: 48px;
+  font-size: 16pt;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .introcontainer {
@@ -245,7 +219,15 @@ button {
   bottom: 0px;
   overflow-x: hidden;
   overflow-y: scroll;
+  z-index: 997;
+}
+
+.turndisplay {
   z-index: 998;
+}
+
+.actorchoice {
+  z-index: 999;
 }
 
 .introcontainer img {
@@ -264,3 +246,7 @@ button {
   margin-right: auto;
   margin-bottom: 48px;
 } 
+
+.viewport {
+  padding-bottom: 64px;
+}
