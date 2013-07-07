@@ -98,7 +98,7 @@ function playScript (scriptName) {
     var player = gameState.scriptPlayerInstances[scriptName];
     if (!player)
       player = gameState.scriptPlayerInstances[scriptName] = new ScriptPlayer(script, gameState);
-    
+
     player.play();
     $(".actorchoice").fadeOut(500);
   };
@@ -132,6 +132,10 @@ function init () {
 
   $("#actor_sofia").click(function () {
     newGame("sofia");
+  });
+
+  $("#joke").click(function () {
+    window.location = "http://html5zombo.com/";
   });
 };
 

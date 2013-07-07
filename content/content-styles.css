@@ -1,11 +1,22 @@
 div.speechbubble.rajar {
-  position: absolute;
   background-color: rgba(250, 200, 190, 0.8);
   right: 16px;
 }
 
 div.speechbubble.sofia {
-  position: absolute;
   background-color: rgba(200, 240, 230, 0.8);
-  right: 16px;
+  left: 16px;
+}
+
+div.speechbubble.narrator {
+  background-color: rgba(255, 255, 255, 1);
+  margin-left: -187.5px;
+  left: 50%;
+  top: 25%;
+}
+
+div.speechbubble.waiter {
+  background-color: rgba(220, 220, 220, 0.8);
+  margin-left: -187.5px;
+  left: 50%;
 }

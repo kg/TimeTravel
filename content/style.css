@@ -81,9 +81,10 @@ div.actors img {
 }
 
 div.speechbubble {
+  position: absolute;
   padding: 12px;
   margin: 0px;
-  width: 300px;
+  width: 375px;
   min-height: 60px;
   border-width: 2px;
   border-radius: 24px;
@@ -145,6 +146,7 @@ div#templates {
 
 .actorchoice {
   padding: 6px;
+  padding-top: 64px;
   z-index: 998;
   position: fixed;
   top: 0px;

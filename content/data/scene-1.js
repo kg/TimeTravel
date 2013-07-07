@@ -94,6 +94,7 @@
     .reset()
     .setBackground("background_P3.png")
 
+    .setSpeaker("narrator")
     .sayText("The mood has gotten awkward...");
 
 
