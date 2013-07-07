@@ -94,7 +94,7 @@ ScriptPlayer.prototype.nextPanel = function () {
     if (imageUri.indexOf(".") < 0)
       imageUri += ".png";
 
-    this.getActor(actorName + "_" + mood)
+    this.getActor(actorName + "_mood")
       .attr("src", "actors/" + imageUri);
   };
 
