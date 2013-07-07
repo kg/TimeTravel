@@ -5,6 +5,7 @@ html, body {
   color: white;
   font-family: Candara, Times New Roman, serif;
   font-size: 16pt;
+  overflow: hidden;
 }
 
 * {
@@ -234,3 +235,32 @@ button {
   height: 48px;
   font-size: 8pt;
 }
+
+.introcontainer {
+  background-color: black;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: 998;
+}
+
+.introcontainer img {
+  display: block;
+  width: 1050px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.introcontainer button {
+  display: block;
+  min-width: 400px;
+  min-height: 64px;
+  font-size: 24pt;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 48px;
+} 

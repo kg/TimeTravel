@@ -11,9 +11,19 @@ function resetGame (evt) {
 
 function resetViewport () {
   $(".viewport").html("");
-  
+
   if (gameState)
     gameState.scriptPlayerInstances = Object.create(null);
+};
+
+function closeIntro (evt) {
+  evt.preventDefault();
+
+  $(".introcontainer").fadeOut(250);
+  window.setTimeout(function () {
+    $(".introimage").html("");
+    $("html").css("overflow", "auto");
+  }, 250);
 };
 
 function beginTurn (evt) {
@@ -190,6 +200,7 @@ function init () {
   $("#chooseActor").click(chooseActor);
   $("#endTurn").click(endTurn);
   $("#beginTurn").click(beginTurn);
+  $("#closeIntro").click(closeIntro);
 
   $("#actor_rajar").click(function () {
     newGame("rajar");
