@@ -87,18 +87,6 @@ div.speechbubble {
   word-wrap: break-word;
 }
 
-div.speechbubble.a {
-  position: absolute;
-  background-color: rgba(250, 200, 190, 0.8);
-  left: 16px;
-}
-
-div.speechbubble.b {
-  position: absolute;
-  background-color: rgba(200, 240, 230, 0.8);
-  left: 72px;
-}
-
 div.speechbubble.call {
   top: 16px;
 }

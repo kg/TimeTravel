@@ -30,6 +30,9 @@ ScriptPlayer.prototype.nextPanel = function () {
     return;
   }
 
+  if (panel.isReset)
+    this.previousPanel = null;
+
   // FIXME: Inherit some state from previous panel - background, etc.
   var displayPanel = 
     (this.previousPanel || $("#panel_template")).clone();

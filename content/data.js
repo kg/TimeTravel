@@ -2,6 +2,9 @@ var allScripts = {};
 
 
 function Script (scriptName) {
+  if (allScripts[scriptName])
+    throw new Error("There is already a script named '" + scriptName + "'");
+  
   this.name = scriptName;
   this.panels = [];
   this.panelsByName = [];
@@ -24,11 +27,12 @@ function Panel (script, panelName) {
   this.commandState = {};
   this.commands = [];
   this.prerequisites = [];
+  this.isReset = false;
 };
 
 // Resets anything that would have otherwise carried over from the last panel
 Panel.prototype.reset = function () {
-  // FIXME
+  this.isReset = true;
   return this;
 };
 
