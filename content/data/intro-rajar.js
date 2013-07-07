@@ -20,4 +20,5 @@
     .setBackground("time-machine.png")
 
 
+  script.setNextScript("scene-1");
 })();

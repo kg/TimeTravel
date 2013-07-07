@@ -30,6 +30,7 @@ function Panel (script, panelName) {
   this.script = script;
   this.name = panelName || null;
   this.commandState = {};
+  this.choices = {};
   this.commands = [];
   this.prerequisites = [];
   this.isReset = false;
@@ -69,6 +70,14 @@ Panel.prototype.setSpeaker = function (actorName) {
   return this;
 };
 
+Panel.prototype.setFlags = function (/* ... flags ... */) {
+  var flags = Array.prototype.slice.call(arguments);
+  this.commands.push(function (displayPanel, player) {
+    player.gameState.setFlags(flags);
+  });
+  return this;
+};
+
 // Says some text in a speech bubble
 Panel.prototype.sayText = function (text) {
   this.commands.push(function (displayPanel) {
@@ -78,14 +87,65 @@ Panel.prototype.sayText = function (text) {
   return this;
 };
 
-Panel.prototype.showDefaultChoice = function (text, flagsToSet) {
-  return this.$showChoice(text, true, flagsToSet);
-};
-
 // Shows a choice in a speech bubble. 
+// dict: {
+//   [default: true],
+//   [prerequisites: (string | array[string])]
+//   key: string,
+//   label: string,
+//   dialogue: string,
+//   [flags: (string | array[string])]
+// }
 // You can pass in a flag name to set a flag when the player chooses this.
-Panel.prototype.showChoice = function (text, flagsToSet) {
-  return this.$showChoice(text, false, flagsToSet);
+Panel.prototype.showChoice = function (dict) {
+  this.choices[dict.key] = dict;
+
+  this.commands.push(function (displayPanel, player) {
+    if (!player.gameState.check(dict.prerequisites))
+      return;
+
+    if (!this.commandState.bubble)
+      this.commandState.bubble = displayPanel.addSpeechBubble(this.commandState.speaker);
+
+    var existingChoiceKey = player.gameState.getChoice(this.name);
+    var existingChoice = null;
+
+    if (existingChoiceKey)
+      existingChoice = this.choices[existingChoiceKey] || null;
+
+    if (this.commandState.speaker !== player.gameState.playerActorName) {
+      if (!dict.default && (existingChoiceKey !== dict.key))
+        return;
+
+      player.gameState.setDefault(this.name, dict.key);
+      this.commandState.bubble.children(".text").text(dict.dialogue);
+    } else {
+      var choice = this.commandState.bubble.addChoice(dict.label);
+
+      if (dict.default) {
+        player.gameState.setDefault(this.name, dict.key);
+        
+        var textElt = this.commandState.bubble.children(".text");
+
+        if (!existingChoiceKey) {
+          textElt.text(dict.dialogue);
+          textElt.addClass("showchoices");
+          textElt.click(makeShowChoicesHandler(this.commandState.bubble));
+        } else {
+          textElt.text(existingChoice.dialogue);
+        }
+      }
+
+      if (existingChoiceKey == dict.key) {
+        choice.addClass("selected");
+      } else if (existingChoiceKey) {
+        choice.addClass("disabled");
+      } else {
+        choice.click(makeChoiceHandler(player, this.name, dict.key, dict.flags));
+      }
+    }
+  });
+  return this;
 };
 
 // Lists out the names of one or more flags that must be set for this panel to appear
@@ -104,82 +164,16 @@ Panel.prototype.setClass = function (className) {
 };
 
 
-Panel.prototype.$showChoice = function (text, isDefault, flagsToSet) {
-  this.commands.push(function (displayPanel, player) {
-    if (!this.commandState.bubble)
-      this.commandState.bubble = displayPanel.addSpeechBubble(this.commandState.speaker);
-
-    var existingChoice = player.gameState.getChoice(this.name);
-    if (this.commandState.speaker !== player.gameState.playerActorName) {
-      if (!isDefault && (existingChoice !== text))
-        return;
-
-      this.commandState.bubble.children(".text").text(text);
-    } else {
-      var choice = this.commandState.bubble.addChoice(text);
-
-      if (isDefault) {
-        var textElt = this.commandState.bubble.children(".text");
-        textElt.text(existingChoice || text);
-
-        if (!existingChoice) {
-          textElt.addClass("showchoices");
-          textElt.click(makeShowChoicesHandler(this.commandState.bubble));
-        } else {
-        }
-      }
-
-      if (existingChoice === text) {
-        choice.addClass("selected");
-      } else if (existingChoice) {
-        choice.addClass("disabled");
-      } else {
-        choice.click(makeChoiceHandler(player, this.name, text, flagsToSet));
-      }
-    }
-  });
-  return this;
-};
-
 Panel.prototype.$checkPrerequisites = function (gameState) {
-  for (var i = 0; i < this.prerequisites.length; i++) {
-    var expected = true;
-    var prereq = this.prerequisites[i];
-    if (prereq.indexOf("!") === 0) {
-      expected = false;
-      prereq = prereq.substr(1);
-    }
-
-    var equals = prereq.indexOf("=");
-    if (equals >= 0) {
-      var parts = prereq.split("=");
-      var key = parts[0].trim();
-      var value = parts[1].trim();
-
-      if (gameState.getChoice(key) !== value)
-        return false;
-    } else {
-      var found = gameState.getFlag(prereq);
-      if (found !== expected)
-        return false;
-    }
-  }
-
-  return true;
+  return gameState.check(this.prerequisites);
 };
 
-function makeChoiceHandler (player, choiceName, choice, flagsToSet) {
+function makeChoiceHandler (player, panelName, choiceKey, flagsToSet) {
   return function () {
-    player.gameState.setChoice(choiceName, choice);
+    player.gameState.setChoice(panelName, choiceKey);
 
-    if (flagsToSet) {
-      if (typeof (flagsToSet) === "string") {
-        player.gameState.setFlag(flagsToSet);
-      } else {
-        for (var l = flagsToSet.length, i = 0; i < l; i++)
-          player.gameState.setFlag(flagsToSet[i]);
-      }
-    }
+    if (flagsToSet)
+      player.gameState.setFlags(flagsToSet);
 
     player.play();
   };

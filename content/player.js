@@ -11,9 +11,12 @@ function ScriptPlayer (script, gameState) {
 };
 
 ScriptPlayer.prototype.play = function () {
+  var previousHeight = (this.page.get()[0]).offsetHeight;
+
   this.currentPanelIndex = -1;
   this.displayedPanelCount = 0;
   this.previousPanel = null;
+  this.page.css("min-height", previousHeight + "px");
   this.page.html("");
 
   window.setTimeout(this.nextPanel.bind(this), NextPanelDelay);
@@ -21,8 +24,8 @@ ScriptPlayer.prototype.play = function () {
 
 ScriptPlayer.prototype.playNextScript = function () {
   // FIXME: Do something if there is no next script
-  if (this.nextScript)
-    playScript(this.nextScript);
+  if (this.script.nextScript)
+    playScript(this.script.nextScript);
 };
 
 ScriptPlayer.prototype.ended = function () {
