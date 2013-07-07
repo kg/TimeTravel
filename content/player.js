@@ -89,6 +89,15 @@ ScriptPlayer.prototype.nextPanel = function () {
     return bubble;
   };
 
+  displayPanel.setActorMood = function (actorName, mood) {
+    var imageUri = actorName + "_" + mood;
+    if (imageUri.indexOf(".") < 0)
+      imageUri += ".png";
+
+    this.getActor(actorName + "_" + mood)
+      .attr("src", "actors/" + imageUri);
+  };
+
   for (var c = panel.preCommands, l = c.length, i = 0; i < l; i++) {
     c[i].call(panel, displayPanel, this);
   }

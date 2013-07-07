@@ -16,8 +16,14 @@ function Script (scriptName) {
 Script.prototype.addPanel = function (panelName) {
   var panel = new Panel(this, panelName);
   this.panels.push(panel);
-  if (panelName)
+
+  if (panelName) {
+    if (this.panelsByName[panelName])
+      throw new Error("There is already a panel named '" + panelName + "'");
+
     this.panelsByName[panelName] = panel;
+  }
+
   return panel;
 };
 
@@ -62,12 +68,11 @@ Panel.prototype.showActor = function (actorName, imageUri) {
   return this;
 };
 
-// Shows an actor named actorName and gives them the specified image
-// Put the image in actors/
-Panel.prototype.setActorMood = function (actorName, imageUri) {
+// Sets the mood of a given named actor.
+// Put the image in actors/ and name it (actorName)_(mood).png
+Panel.prototype.setActorMood = function (actorName, mood) {
   this.commands.push(function (displayPanel) {
-    displayPanel.getActor(actorName + "_mood")
-      .attr("src", "actors/" + imageUri);
+    displayPanel.setActorMood(actorName, mood);
   });
   return this;
 };
@@ -143,6 +148,9 @@ Panel.prototype.showChoice = function (dict) {
         return;
 
       this.commandState.bubble.children(".text").text(dict.dialogue);
+
+      if (dict.mood)
+        displayPanel.setActorMood(this.commandState.speaker, dict.mood);
     } else {
       var choice = this.commandState.bubble.addChoice(dict.label);
 
@@ -151,8 +159,14 @@ Panel.prototype.showChoice = function (dict) {
 
         if (!existingChoiceKey) {
           textElt.text(dict.dialogue);
+
+          if (dict.mood)
+            displayPanel.setActorMood(this.commandState.speaker, dict.mood);
         } else {
           textElt.text(existingChoice.dialogue);
+
+          if (existingChoice.mood)
+            displayPanel.setActorMood(this.commandState.speaker, existingChoice.mood);
         }
 
         if (!existingChoiceKey || true) {
