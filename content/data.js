@@ -73,29 +73,28 @@ Panel.prototype.showDefaultChoice = function (text, flagsToSet) {
   return this.$showChoice(text, true, flagsToSet);
 };
 
+// Shows a choice in a speech bubble. 
+// You can pass in a flag name to set a flag when the player chooses this.
 Panel.prototype.showChoice = function (text, flagsToSet) {
   return this.$showChoice(text, false, flagsToSet);
 };
 
-function makeChoiceHandler (player, choiceName, choice, flagsToSet) {
-  return function () {
-    player.gameState.setChoice(choiceName, choice);
-
-    if (flagsToSet) {
-      if (typeof (flagsToSet) === "string") {
-        player.gameState.setFlag(flagsToSet);
-      } else {
-        for (var l = flagsToSet.length, i = 0; i < l; i++)
-          player.gameState.setFlag(flagsToSet[i]);
-      }
-    }
-
-    player.play();
-  };
+// Lists out the names of one or more flags that must be set for this panel to appear
+// Put a '!' before the flag name to require it not to be set (like !foo)
+Panel.prototype.setPrerequisites = function (/* ... prerequisites ... */) {
+  this.prerequisites = Array.prototype.slice.call(arguments);
+  return this;
 };
 
-// Shows a choice in a speech bubble. 
-// You can pass in a flag name to set a flag when the player chooses this.
+// Lets you set a CSS class on the panel so you can do things like rearrange bubbles via CSS.
+Panel.prototype.setClass = function (className) {
+  this.commands.push(function (displayPanel, player) {
+    displayPanel.addClass(className);
+  });
+  return this;  
+};
+
+
 Panel.prototype.$showChoice = function (text, isDefault, flagsToSet) {
   this.commands.push(function (displayPanel, player) {
     if (!this.commandState.bubble)
@@ -119,13 +118,6 @@ Panel.prototype.$showChoice = function (text, isDefault, flagsToSet) {
       }
     }
   });
-  return this;
-};
-
-// Lists out the names of one or more flags that must be set for this panel to appear
-// Put a '!' before the flag name to require it not to be set (like !foo)
-Panel.prototype.setPrerequisites = function (/* ... prerequisites ... */) {
-  this.prerequisites = Array.prototype.slice.call(arguments);
   return this;
 };
 
@@ -154,4 +146,21 @@ Panel.prototype.$checkPrerequisites = function (gameState) {
   }
 
   return true;
+};
+
+function makeChoiceHandler (player, choiceName, choice, flagsToSet) {
+  return function () {
+    player.gameState.setChoice(choiceName, choice);
+
+    if (flagsToSet) {
+      if (typeof (flagsToSet) === "string") {
+        player.gameState.setFlag(flagsToSet);
+      } else {
+        for (var l = flagsToSet.length, i = 0; i < l; i++)
+          player.gameState.setFlag(flagsToSet[i]);
+      }
+    }
+
+    player.play();
+  };
 };

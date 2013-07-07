@@ -44,6 +44,7 @@
 
 
   script.addPanel()
+    .setClass("spacetimevoid")
     .setBackground("creepy-spacetime-void.png")
     .showActor("a", "sofia.png")
     .showActor("b", "thedoctor.png")

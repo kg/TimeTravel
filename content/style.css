@@ -141,3 +141,7 @@ li.choice.disabled, li.choice.selected {
 div#templates {
   display: none;
 }
+
+.spacetimevoid {
+  background-color: black;
+};
