@@ -3,9 +3,8 @@
 
 
   script.addPanel("Cell_01_01")
-    .setBackground("background_P1.png")
-//    .showActor("rajar", "rajar.png")
-//    .showActor("sofia", "sofia.png")
+    .setBackground("background_P2.png")
+    .showActor("mood", "rajar_P2_normal.png")
 
     .setSpeaker("rajar")
     .showChoice({
@@ -22,6 +21,9 @@
 
 
   script.addPanel("Cell_01_02")
+    .setBackground("background_P1.png")
+    .showActor("mood", "sofia_P1_normal.png")
+
     .setSpeaker("sofia")
     .showChoice({
       prerequisites: "Cell_01_01=R_01",
