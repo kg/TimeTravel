@@ -7,7 +7,7 @@
     .showActor("waiter", "waiter.png")
 
     .setSpeaker("waiter")
-    .sayText("Would gentleman and madame perhance be inclined to sate their thirsts with a sophisticated libation?");
+    .sayText("Would gentleman and madame perchance be inclined to sate their thirsts with a sophisticated libation?");
 
 
   script.addPanel("Cell_02_02")
@@ -137,6 +137,15 @@
       mood: "P1_angry",
       default: true
     })
+
+
+  script.addPanel("Cell_02_05")
+    .setPrerequisites("AWK2")
+    .reset()
+    .setBackground("background_P3.png")
+
+    .setSpeaker("narrator")
+    .sayText("The silence is thick enough to cut with a very, very sharp knife.");
 
 
 })();

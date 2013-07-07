@@ -4,18 +4,19 @@
 
   script.addPanel("Cell_01_01")
     .setBackground("background_P2.png")
-    .setActorMood("rajar", "rajar_P2_normal.png")
 
     .setSpeaker("rajar")
     .showChoice({
       key: "R_01",
       label: "Ask about meeting at convention",
-      dialogue: "It was great meeting you at the Doctor Who Convention. Did you enjoy it?"
+      dialogue: "It was great meeting you at the Doctor Who Convention. Did you enjoy it?",
+      mood: "P2_happy"
     })
     .showChoice({
       key: "R_02",
       label: "Ask about the restaurant",
       dialogue: "Have you been here before?",
+      mood: "P2_normal",
       default: true
     });
 
@@ -29,6 +30,7 @@
       prerequisites: "Cell_01_01=R_01",
       key: "S_01",
       label: "Yes",
+      mood: "P1_happy",
       dialogue: "Yeah, it was great."
     })
     .showChoice({
@@ -37,12 +39,14 @@
       label: "No",
       dialogue: "Not really, I saw my ex trying to pick up someone else.",
       default: true,
+      mood: "P1_sad",
       flags: "AWK1"
     })
     .showChoice({
       prerequisites: "Cell_01_01=R_02",
       key: "S_03",
       label: "Yes",
+      mood: "P1_normal",
       dialogue: "Yeah, it's good."
     })
     .showChoice({
@@ -51,6 +55,7 @@
       label: "Yes, but...",
       dialogue: "Yeah, I used to come here with my ex all the time.",
       default: true,
+      mood: "P1_normal",
       flags: "AWK1"
     });
 
@@ -62,6 +67,7 @@
       key: "S_01",
       label: "Loved the panel",
       dialogue: "I loved Prof. Tom Baker's panel!",
+      mood: "P1_happy",
       flags: "!AWK1"
     })
     .showChoice({
@@ -70,6 +76,7 @@
       label: "Awesome",
       dialogue: "It was so awesome! I helped my ex give his talk.",
       default: true,
+      mood: "P1_happy",
       flags: "AWK1"
     })
     .showChoice({
@@ -77,6 +84,7 @@
       key: "S_03",
       label: "The service",
       dialogue: "The service is awesome.",
+      mood: "P1_happy",
       flags: "!AWK1"
     })
     .showChoice({
@@ -85,6 +93,7 @@
       label: "Ambiance",
       dialogue: "My ex really liked the ambiance.",
       default: true,
+      mood: "P1_normal",
       flags: "AWK1"
     });
 

@@ -1,14 +1,26 @@
 var gameState = null;
 
-function resetGame () {
+function resetGame (evt) {
+  evt.preventDefault();
+
   var viewport = $(".viewport");
   var previousHeight = (viewport.get()[0]).offsetHeight;
   viewport.css("min-height", previousHeight + "px");
   newGame(gameState.playerActorName);
 };
 
+function chooseActor (evt) {
+  evt.preventDefault();
+
+  window.location.hash = "";
+  $(".actorchoice").fadeIn(500);
+  $(".viewport").html("");
+};
+
 function newGame (playerActorName) {
   $(".viewport").html("");
+  
+  window.location.hash = "#" + playerActorName;
   gameState = new GameState(playerActorName);
   playScript("intro-" + playerActorName);
 };
@@ -125,6 +137,7 @@ function init () {
   $(".loading").fadeOut(250);
 
   $("#reset").click(resetGame);
+  $("#chooseActor").click(chooseActor);
 
   $("#actor_rajar").click(function () {
     newGame("rajar");
@@ -137,6 +150,10 @@ function init () {
   $("#joke").click(function () {
     window.location = "http://html5zombo.com/";
   });
+
+  if (window.location.hash.trim().length > 1) {
+    newGame(window.location.hash.substr(1));
+  }
 };
 
 $().ready(init);
