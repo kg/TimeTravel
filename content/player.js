@@ -63,7 +63,7 @@ ScriptPlayer.prototype.nextPanel = function () {
       var choice = $("#choice_template").clone();
       choice.attr("id", null);
       choice.text(text);
-      choice.appendTo(this);
+      choice.appendTo(this.children(".choices"));
       return choice;
     };
 

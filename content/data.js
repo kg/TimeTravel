@@ -64,7 +64,7 @@ Panel.prototype.setSpeaker = function (actorName) {
 Panel.prototype.sayText = function (text) {
   this.commands.push(function (displayPanel) {
     this.commandState.bubble = displayPanel.addSpeechBubble(this.commandState.speaker);
-    this.commandState.bubble.text(text);
+    this.commandState.bubble.children(".text").text(text);
   });
   return this;
 };
@@ -105,9 +105,20 @@ Panel.prototype.$showChoice = function (text, isDefault, flagsToSet) {
       if (!isDefault && (existingChoice !== text))
         return;
 
-      this.commandState.bubble.text(text);
+      this.commandState.bubble.children(".text").text(text);
     } else {
       var choice = this.commandState.bubble.addChoice(text);
+
+      if (isDefault) {
+        var textElt = this.commandState.bubble.children(".text");
+        textElt.text(existingChoice || text);
+
+        if (!existingChoice) {
+          textElt.addClass("showchoices");
+          textElt.click(makeShowChoicesHandler(this.commandState.bubble));
+        } else {
+        }
+      }
 
       if (existingChoice === text) {
         choice.addClass("selected");
@@ -162,5 +173,12 @@ function makeChoiceHandler (player, choiceName, choice, flagsToSet) {
     }
 
     player.play();
+  };
+};
+
+function makeShowChoicesHandler (bubble) {
+  return function () {
+    bubble.children(".text").css("display", "none");
+    bubble.children(".choices").css("display", "block");
   };
 };

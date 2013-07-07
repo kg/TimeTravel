@@ -163,3 +163,14 @@ div#templates {
   border-style: solid;
   padding: 4px;
 }
+
+.showchoices {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  color: rgb(0, 0, 64);
+}
+
+.showchoices:hover {
+  color: rgb(0, 0, 128);
+}
