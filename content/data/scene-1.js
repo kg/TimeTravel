@@ -3,9 +3,9 @@
 
 
   script.addPanel("Cell_01_01")
-    .setBackground("restaurant.png")
-    .showActor("rajar", "rajar.png")
-    .showActor("sofia", "sofia.png")
+    .setBackground("background_P1.png")
+//    .showActor("rajar", "rajar.png")
+//    .showActor("sofia", "sofia.png")
 
     .setSpeaker("rajar")
     .showChoice({
