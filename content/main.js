@@ -48,8 +48,10 @@ function beginTurn (evt) {
   resetViewport();
   if (!seenIntros[gameState.playerActorName])
     showIntro();
-  else
+  else {
+    $("html").css("overflow", "auto");
     playScript("intro-" + gameState.playerActorName);
+  }
 };
 
 function updateTurnDisplay () {

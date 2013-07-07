@@ -166,7 +166,7 @@ label: "Agree to disagree.",
 dialogue: "Let's just agree to disagree, then...",
 prerequisites: "Cell_03_02=R_03",
 flags: "!AWK3",
-      mood: "P1_angry"
+      mood: "P1_normal"
 })
 
 .showChoice({
