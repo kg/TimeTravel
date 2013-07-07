@@ -199,9 +199,17 @@ button {
   color: rgb(0, 0, 128);
 }
 
+#buttons {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 96px;
+  height: 256px;
+}
+
 #reset {
   position: fixed;
-  top: 54px;
+  top: 74px;
   left: 2px;
   width: 96px;
   height: 48px;
@@ -210,7 +218,7 @@ button {
 
 #chooseActor {
   position: fixed;
-  top: 106px;
+  top: 126px;
   left: 2px;
   width: 96px;
   height: 48px;

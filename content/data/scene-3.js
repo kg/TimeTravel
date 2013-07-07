@@ -51,7 +51,7 @@ key: "R_01",
 label: "Discuss technical imperfections.",
 dialogue: "For sure. But, the use of a single can of \"Chernobly\" energy drink in \"Hot Tub Time Machine\" would not be sufficient to take them back 20 years. They would have needed at least 5.4 cans, don't you think?",
 prerequisites: "Cell_03_01=S_01",
-// mood: "normal"
+      mood: "P2_normal"
 })
 .showChoice({
 key: "R_02",
@@ -59,7 +59,7 @@ label: "Discuss awesomeness of basic premise.",
 dialogue: "Of course! From start to finish, it's brilliant. I mean, a hot tub... that's a time machine! What's not to like? Don't you agree?",
 prerequisites: "Cell_03_01=S_01",
 default: true,
-// mood: "happy"
+      mood: "P2_happy"
 })
 
 .showChoice({
@@ -68,7 +68,7 @@ label: "Say it's better than Back to the Future.",
 dialogue: "It's definitely been an inspiration for me. I can't believe you find anything of use in \"Back to the Future\".",
 prerequisites: "Cell_03_01=S_01",
 default: true,
-// mood: "normal"
+      mood: "P2_normal"
 })
 
 .showChoice({
@@ -76,7 +76,7 @@ key: "R_04",
 label: "Ask about the 88mph limit.",
 dialogue: "Is the 88 mph speed limit for car based time travel really a thing?",
 prerequisites: "Cell_03_01=S_02",
-// mood: " normal"
+      mood: "P2_ normal"
 })
 
 
@@ -85,7 +85,7 @@ key: "R_05",
 label: "Ask about possibility of failure.",
 dialogue: "Aren't you worried about your car failing to jump and crashing into a wall at high speed? Or that there's a wall in the future, or the past? Seems dangerous.",
 prerequisites: "Cell_03_01=S_02",
-// mood: "sad"
+      mood: "P2_sad"
 })
 
    .showChoice({
@@ -94,7 +94,7 @@ label: "Discuss difficulties of drinking and driving.",
 dialogue: "All that driving, does that mean you can't just sit and relax with a beer while you're jumping?",
 prerequisites: "Cell_03_01=S_02",
 default: true,
-// mood: "normal"
+      mood: "P2_normal"
 })
 
 .showChoice({
@@ -103,7 +103,7 @@ label: "Compare it to Dr Who.",
 dialogue: "I love watching Dr. Who, but if we consider the time machine, \"Bill & Ted's Excellent Adventure\" seems entirely more plausible.",
 prerequisites: "Cell_03_01=S_03",
 default: true,
-// mood: "normal"
+      mood: "P2_normal"
 })
 
 .showChoice({
@@ -111,7 +111,7 @@ key: "R_08",
 label: "Say booth time travel is flawed.",
 dialogue: "I believe that booth-based time travel is inherently flawed due to the use of a coin return slot. I mean, that system is so prone to failure!",
 prerequisites: "Cell_03_01=S_03",
-// mood: "normal"
+      mood: "P2_normal"
 })
 
 ;
@@ -131,7 +131,7 @@ dialogue: "The entire premise is implausible. You're wasting your time.",
 prerequisites: "Cell_03_02=R_01",
 default: true,
 flags: "AWK3",
-// mood: "angry"
+      mood: "P1_angry"
 })
 
 .showChoice({
@@ -139,7 +139,7 @@ key: "S_02",
 label: "Agree and...",
 dialogue: "I hadn't considered that! It's like if the flying train in \"Back to the Future\" having VTOL capabilities. As if!",
 prerequisites: "Cell_03_02=R_01",
-// mood: "happy"
+      mood: "P1_happy"
 })
 
 .showChoice({
@@ -149,7 +149,7 @@ dialogue: "No, it is nooooot!",
 prerequisites: "Cell_03_02=R_02",
 default: true,
 flags: "AWK3",
-// mood: "angry"
+      mood: "P1_angry"
 })
 
 .showChoice({
@@ -157,7 +157,7 @@ key: "S_04",
 label: "Say feel the same about Back to the Future.",
 dialogue: "That's so funny, I feel the same about \"Back to the Future\"!!",
 prerequisites: "Cell_03_02=R_02",
-// mood: "happy"
+      mood: "P1_happy"
 })
 
 .showChoice({
@@ -166,7 +166,7 @@ label: "Agree to disagree.",
 dialogue: "Let's just agree to disagree, then...",
 prerequisites: "Cell_03_02=R_03",
 flags: "!AWK3",
-// mood: "angry"
+      mood: "P1_angry"
 })
 
 .showChoice({
@@ -176,7 +176,7 @@ dialogue: "Are you trying to pick a fight or something? You know, I love \"Back 
 prerequisites: "Cell_03_02=R_03",
 default: true,
 flags: "AWK3",
-// mood: "angry"
+      mood: "P1_angry"
 })
 
 .showChoice({
@@ -186,7 +186,7 @@ dialogue: "Do you actually really care? I thought you only believed in closed lo
 prerequisites: "Cell_03_02=R_04",
 default: true,
 flags: "AWK3",
-// mood: "normal"
+      mood: "P1_normal"
 })
 
 .showChoice({
@@ -194,7 +194,7 @@ key: "S_08",
 label: "Explain details.",
 dialogue: "According to my calculations, the world moves so fast these days that you would need to reach 91 mph now.",
 prerequisites: "Cell_03_02=R_04",
-// mood: "normal"
+      mood: "P1_normal"
 })
 
 .showChoice({
@@ -202,7 +202,7 @@ key: "S_09",
 label: "Say how amazing Dr Brown was.",
 dialogue: "Dr. Brown's calculations were amazingly precise in his time. He paved the way for others like myself to follow.",
 prerequisites: "Cell_03_02=R_04",
-// mood: "happy"
+      mood: "P1_happy"
 })
 
 .showChoice({
@@ -212,7 +212,7 @@ dialogue: "Well, if you don't take the time to do the calculations and just go a
 prerequisites: "Cell_03_02=R_05",
 default: true,
 flags: "AWK3",
-// mood: "sad"
+      mood: "P1_sad"
 })
 
 .showChoice({
@@ -221,7 +221,7 @@ label: "Say you're always careful.",
 dialogue: "It's a risk, sure. But I'm always careful to do the calculations first. Measure twice, jump once as they say!",
 prerequisites: "Cell_03_02=R_05",
 flags: "!AWK3",
-// mood: "happy"
+      mood: "P1_happy"
 })
 
 .showChoice({
@@ -230,7 +230,7 @@ label: "Say alcohol and time travel don't mix.",
 dialogue: "Anyone who mixes alcohol and time travel doesn't deserve to have a working time machine anyway. Time travel is serious business and not to be used for frivolous tasks.",
 prerequisites: "Cell_03_02=R_06",
 flags: "AWK3",
-// mood: "angry"
+      mood: "P1_angry"
 })
 
 .showChoice({
@@ -240,7 +240,7 @@ dialogue: "I guess if the Time Mile Club actually existed, then those bubbles mi
 prerequisites: "Cell_03_02=R_06",
 default: true,
 flags: "AWK3",
-// mood: "normal"
+      mood: "P1_normal"
 })
 
 
@@ -251,7 +251,7 @@ dialogue: "Well, at least Dr. Who is more plausible than a hot tub time machine.
 prerequisites: "Cell_03_02=R_07",
 default: true,
 flags: "AWK3",
-// mood: "happy"
+      mood: "P1_happy"
 })
 
 .showChoice({
@@ -261,7 +261,7 @@ dialogue: "What I don't get in Dr. Who is why he never regenerates as a woman. I
 prerequisites: "Cell_03_02=R_07",
 default: true,
 flags: "AWK3",
-// mood: "sad"
+      mood: "P1_sad"
 })
 
 .showChoice({
@@ -271,7 +271,7 @@ dialogue: "What about hot tubs? What if you spring a leak? How are you going to 
 prerequisites: "Cell_03_02=R_08",
 default: true,
 flags: "AWK3",
-// mood: "sad"
+      mood: "P1_sad"
 })
 
 .showChoice({
@@ -280,7 +280,7 @@ label: "Start technical discussion.",
 dialogue: "Every time machine has flaws. Finding radioactive fuel in a prehistoric jungle's no picnic... I mean, I would imagine. Anyway, it's about choosing the machine that's right for you. How did you decide on hot tubs?",
 prerequisites: "Cell_03_02=R_08",
 flags: ["DISCUSS", "!AWK3"],
-// mood: "happy"
+      mood: "P1_happy"
 })
 
 
@@ -300,7 +300,7 @@ dialogue: "I find it hard to believe that Marty's parents don't remember his piv
 prerequisites: "Cell_03_03=S_02",
 default: true,
 flags: "AWK3",
-// mood: "normal"
+      mood: "P2_normal"
 })
 
 .showChoice({
@@ -309,7 +309,7 @@ label: "Laugh about Hollywood",
 dialogue: "They can never get it right in Hollywood! They need to do more research.",
 prerequisites: "Cell_03_03=S_02",
 flags: "!AWK3",
-// mood: "happy"
+      mood: "P2_happy"
 })
 
 .showChoice({
@@ -318,7 +318,7 @@ label: "You can't compare the two movies.",
 dialogue: "\"Back to the Future\" isn't even half as good as \"Hot Tub Time Machine!\"",
 prerequisites: "Cell_03_03=S_04",
 flags: "AWK3",
-// mood: "angry"
+      mood: "P2_angry"
 })
 
 .showChoice({
@@ -328,7 +328,7 @@ dialogue: "\"Back to the Future\" is way more implausible than \"Hot Tub Time Ma
 prerequisites: "Cell_03_03=S_04",
 default: true,
 flags: "AWK3",
-// mood: "angry"
+      mood: "P2_angry"
 })
 
 .showChoice({
@@ -337,7 +337,7 @@ label: "Ask what the world is coming to.",
 dialogue: "Fascinating. It's crazy how few people stop to really live in the moment.",
 prerequisites: "Cell_03_03=S_08",
 flags: "!AWK3",
-// mood: "happy"
+      mood: "P2_happy"
 })
 
 .showChoice({
@@ -347,7 +347,7 @@ dialogue: "That doesn't sound right... people going fast shouldn't change your c
 prerequisites: "Cell_03_03=S_08",
 default: true,
 flags: "AWK3",
-// mood: "normal"
+      mood: "P2_normal"
 })
 
 .showChoice({
@@ -356,7 +356,7 @@ label: "Question number of papers Dr Brown wrote.",
 dialogue: "I don't remember seeing any papers published by Dr. Brown in the \"Qualified Users and Negotiators of Time Travel Universal Ministry Gazette\".",
 prerequisites: "Cell_03_03=S_09",
 flags: "AWK3",
-// mood: "normal"
+      mood: "P2_normal"
 })
 
 .showChoice({
@@ -366,7 +366,7 @@ dialogue: "Wasn't he fictional? You don't actually believe he existed, do you? H
 prerequisites: "Cell_03_03=S_09",
 default: true,
 flags: "AWK3",
-// mood: "happy"
+      mood: "P2_happy"
 })
 
 .showChoice({
@@ -374,7 +374,7 @@ key: "R_09",
 label: "Question whether Dr Who can control his regenerative powers.",
 dialogue: "Do you think he can control those regenerative powers enough to make such a change?",
 prerequisites: "Cell_03_03=S_15",
-// mood: "normal"
+      mood: "P2_normal"
 })
 
 .showChoice({
@@ -384,7 +384,7 @@ dialogue: "Yeah, you're the only girl I've ever met at a conference that wasn't 
 prerequisites: "Cell_03_03=S_15",
 default: true,
 flags: "AWK3",
-// mood: "normal"
+      mood: "P2_normal"
 })
 
 .showChoice({
@@ -393,7 +393,7 @@ label: "Agree and talk about solutions.",
 dialogue: "I agree, it's terrible. Someone needs to use their time machine to convince women not to give up on their time travel studies. There's got to be a way to solve this.",
 prerequisites: "Cell_03_03=S_15",
 flags: "!AWK3",
-// mood: "sad"
+      mood: "P2_sad"
 })
 ;
 
@@ -411,7 +411,7 @@ dialogue: "I'm sure if I bothered I could sit down and do the calculations to wo
 prerequisites: "Cell_03_04=R_09",
 default: true,
 flags: "AWK3",
-// mood: "normal"
+      mood: "P1_normal"
 })
 
 .showChoice({
@@ -420,7 +420,7 @@ label: "Start a technical discussion",
 dialogue: "I'm sure it's possible. Sure, he's a Time Lord, but after reading Rassilon‘s paper in its original Gallifreyan I believe it supports the process for humans as well. It's just a matter of...",
 prerequisites: "Cell_03_04=R_09",
 flags: ["DISCUSS", "!AWK3"],
-// mood: "happy"
+      mood: "P1_happy"
 })
 ;
 

@@ -143,6 +143,11 @@ Panel.prototype.showChoice = function (dict) {
     if (existingChoiceKey)
       existingChoice = this.choices[existingChoiceKey] || null;
 
+    if (existingChoice && !player.gameState.check(existingChoice.prerequisites)) {
+      existingChoiceKey = player.gameState.defaultChoices[this.name];
+      existingChoice = this.choices[existingChoiceKey] || null;
+    }
+
     if (!isMakingChoice) {
       if (!dict.default && (existingChoiceKey !== dict.key))
         return;

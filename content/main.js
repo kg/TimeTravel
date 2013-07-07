@@ -17,6 +17,7 @@ function resetViewport () {
 };
 
 function beginTurn (evt) {
+  $("#buttons").css("display", "none");
   evt.preventDefault();
 
   resetViewport();
@@ -26,6 +27,22 @@ function beginTurn (evt) {
 function endTurn (evt) {
   evt.preventDefault();
 
+  var buttonTexts = [
+    "Oh boy! I can't wait.",
+    "How exciting!",
+    "Not again :(",
+    "When will this end?!",
+    "Let's do this!",
+    "Onward.",
+    "Step aside, spacetime!",
+    "Gonna click some hyperlinks!"
+  ];
+
+  var buttonText = buttonTexts[
+    Math.floor(Math.random() * buttonTexts.length)
+  ];
+
+  $("#beginTurn").text(buttonText);
   $(".turndisplay").fadeIn(500);
 
   if (gameState.playerActorName === "rajar") {
