@@ -1,11 +1,13 @@
 div.speechbubble.rajar {
   background-color: rgba(150, 213, 236, 0.8);
+  font-family: 'Kite One', cursive;
   text-shadow: white 0px 1px 0px;
   right: 16px;
 }
 
 div.speechbubble.sofia {
   background-color: rgba(255, 255, 162, 0.8);
+  font-family: 'Kite One', cursive;
   text-shadow: white 0px 1px 0px;
   left: 16px;
 }

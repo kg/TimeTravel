@@ -162,4 +162,6 @@
     .sayText("The silence is thick enough to cut with a very, very sharp knife.");
 
 
+  script.setNextScript("scene-3");
+
 })();
