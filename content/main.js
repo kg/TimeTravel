@@ -11,8 +11,15 @@ function playScript (scriptName) {
 };
 
 function init () {
-  newGame("b");
-  playScript("test");
+  $("#actor_a").click(function () {
+    newGame("a");
+    playScript("test");
+  });
+
+  $("#actor_b").click(function () {
+    newGame("b");
+    playScript("test");
+  });
 };
 
 $().ready(init);

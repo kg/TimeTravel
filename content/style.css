@@ -144,4 +144,22 @@ div#templates {
 
 .spacetimevoid {
   background-color: black;
-};
+}
+
+.actorchoice {
+  padding: 6px;
+}
+
+.actorchoice, .actorchoice button {
+  background-color: black;
+  border-color: white;
+  color: white;
+  font-size: 14pt;
+  display: inline-block;
+  text-align: center;
+}
+
+.actorchoice button {
+  border-style: solid;
+  padding: 4px;
+}
