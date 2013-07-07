@@ -23,6 +23,7 @@ function Panel (script, panelName) {
   this.name = panelName || null;
   this.commandState = {};
   this.commands = [];
+  this.prerequisites = [];
 };
 
 // Resets anything that would have otherwise carried over from the last panel
@@ -68,15 +69,37 @@ Panel.prototype.sayText = function (text) {
   return this;
 };
 
+Panel.prototype.showDefaultChoice = function (text, flagsToSet) {
+  return this.$showChoice(text, true, flagsToSet);
+};
+
+Panel.prototype.showChoice = function (text, flagsToSet) {
+  return this.$showChoice(text, false, flagsToSet);
+};
+
 // Shows a choice in a speech bubble. 
 // You can pass in a flag name to set a flag when the player chooses this.
-Panel.prototype.showChoice = function (text, flagsToSet) {
-  this.commands.push(function (displayPanel) {
+Panel.prototype.$showChoice = function (text, isDefault, flagsToSet) {
+  this.commands.push(function (displayPanel, gameState) {
     if (!this.commandState.bubble)
       this.commandState.bubble = displayPanel.addSpeechBubble(this.commandState.speaker);
 
-    this.commandState.bubble.addChoice(text);
-    // FIXME: flagsToSet
+    var existingChoice = gameState.getChoice(this.name);
+    if (this.commandState.speaker !== gameState.playerActorName) {
+      if (!isDefault && (existingChoice !== text))
+        return;
+
+      this.commandState.bubble.text(text);
+    } else {
+      var choice = this.commandState.bubble.addChoice(text);
+
+      if (existingChoice === text) {
+        choice.addClass("selected");
+      } else if (existingChoice) {
+        choice.addClass("disabled");
+      }
+      // FIXME: flagsToSet
+    }
   });
   return this;
 };
@@ -84,6 +107,21 @@ Panel.prototype.showChoice = function (text, flagsToSet) {
 // Lists out the names of one or more flags that must be set for this panel to appear
 // Put a '!' before the flag name to require it not to be set (like !foo)
 Panel.prototype.setPrerequisites = function (/* ... prerequisites ... */) {
-  // FIXME
+  this.prerequisites = Array.prototype.slice(arguments);
   return this;
+};
+
+Panel.prototype.$checkPrerequisites = function (gameState) {
+  for (var i = 0; i < this.prerequisites.length; i++) {
+    var inverted = false;
+    var prereq = this.prerequisites[i];
+    if (prereq.indexOf("!") === 0) {
+      inverted = true;
+      prereq = prereq.substr(1);
+    }
+
+    console.log(prereq + " inverted=" + inverted);
+  }
+
+  return true;
 };

@@ -13,7 +13,7 @@
 
   script.addPanel("favourite-color")
     .setSpeaker("b")
-    .showChoice(
+    .showDefaultChoice(
       "Green"
     )
     .showChoice(

@@ -1,5 +1,6 @@
-function ScriptPlayer (script) {
+function ScriptPlayer (script, gameState) {
   this.script = script;
+  this.gameState = gameState;
   this.page = $(".comicpage");
 
   this.currentPanelIndex = -1;
@@ -10,7 +11,8 @@ ScriptPlayer.prototype.play = function () {
   this.previousPanel = null;
   this.page.html("");
 
-  this.nextPanel();
+  while (this.currentPanelIndex < this.script.panels.length)
+    this.nextPanel();
 };
 
 ScriptPlayer.prototype.ended = function () {
@@ -25,6 +27,10 @@ ScriptPlayer.prototype.nextPanel = function () {
     return;
   }
 
+  if (!panel.$checkPrerequisites(this.gameState)) {
+    return;
+  }
+
   // FIXME: Inherit some state from previous panel - background, etc.
   var displayPanel = 
     (this.previousPanel || $("#panel_template")).clone();
@@ -32,7 +38,7 @@ ScriptPlayer.prototype.nextPanel = function () {
   displayPanel.children(".bubbles").html("");
 
   var bubbleCount = 0;
-  
+
   displayPanel.getActor = function (actorName) {
     var existingActor = displayPanel.children(".actors").children(".actor_" + actorName);
     if (existingActor.length < 1) {
@@ -66,7 +72,7 @@ ScriptPlayer.prototype.nextPanel = function () {
   };
 
   for (var c = panel.commands, l = c.length, i = 0; i < l; i++) {
-    c[i].call(panel, displayPanel);
+    c[i].call(panel, displayPanel, this.gameState);
   }
 
   if (

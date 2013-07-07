@@ -116,6 +116,11 @@ li.choice {
   margin-bottom: 2px;
 }
 
+li.choice.disabled {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.4);
+}
+
 li.choice:hover, li.choice.selected {
   background-color: white;
   border-color: rgba(0, 0, 0, 0.8);
