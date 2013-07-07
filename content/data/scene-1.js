@@ -22,8 +22,8 @@
 
 
   script.addPanel("Cell_01_02")
+    .reset()
     .setBackground("background_P1.png")
-    .setActorMood("sofia", "sofia_P1_normal.png")
 
     .setSpeaker("sofia")
     .showChoice({
@@ -102,6 +102,7 @@
     .setPrerequisites("AWK1")
     .reset()
     .setBackground("background_P3.png")
+    .showActor("pair", "P3_awkward.png")
 
     .setSpeaker("narrator")
     .sayText("The mood has gotten awkward...");

@@ -2,9 +2,21 @@
   var script = new Script("scene-2");
 
 
-  script.addPanel("Cell_02_01")
+  script.addPanel()
+    .setPrerequisites("!AWK1")
     .setBackground("background_P3.png")
-    .showActor("waiter", "waiter.png")
+    .showActor("waiter", "P3_waiter.png")
+    .showActor("pair", "P3_normal.png")
+
+    .setSpeaker("waiter")
+    .sayText("Would gentleman and madame perchance be inclined to sate their thirsts with a sophisticated libation?");
+
+
+  script.addPanel()
+    .setPrerequisites("AWK1")
+    .setBackground("background_P3.png")
+    .showActor("waiter", "P3_waiter.png")
+    .showActor("pair", "P3_awkward.png")
 
     .setSpeaker("waiter")
     .sayText("Would gentleman and madame perchance be inclined to sate their thirsts with a sophisticated libation?");
@@ -143,6 +155,8 @@
     .setPrerequisites("AWK2")
     .reset()
     .setBackground("background_P3.png")
+    .showActor("waiter", "P3_waiter_awkward.png")
+    .showActor("pair", "P3_awkward.png")
 
     .setSpeaker("narrator")
     .sayText("The silence is thick enough to cut with a very, very sharp knife.");

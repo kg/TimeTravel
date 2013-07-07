@@ -9,17 +9,47 @@ function resetGame (evt) {
   newGame(gameState.playerActorName);
 };
 
+function resetViewport () {
+  $(".viewport").html("");
+  
+  if (gameState)
+    gameState.scriptPlayerInstances = Object.create(null);
+};
+
+function beginTurn (evt) {
+  evt.preventDefault();
+
+  resetViewport();
+  playScript("intro-" + gameState.playerActorName);
+};
+
+function endTurn (evt) {
+  evt.preventDefault();
+
+  $(".turndisplay").fadeIn(500);
+
+  if (gameState.playerActorName === "rajar") {
+    gameState.playerActorName = "sofia";
+  } else {
+    gameState.playerActorName = "rajar";
+  }
+
+  window.location.hash = "#" + gameState.playerActorName;
+  var cappedName = gameState.playerActorName[0].toUpperCase() + gameState.playerActorName.substr(1);
+  $("#playerName").text(cappedName);
+};
+
 function chooseActor (evt) {
   evt.preventDefault();
 
   window.location.hash = "";
   $(".actorchoice").fadeIn(500);
-  $(".viewport").html("");
+  resetViewport();
 };
 
 function newGame (playerActorName) {
-  $(".viewport").html("");
-  
+  resetViewport();
+
   window.location.hash = "#" + playerActorName;
   gameState = new GameState(playerActorName);
   playScript("intro-" + playerActorName);
@@ -110,9 +140,12 @@ function playScript (scriptName) {
     var player = gameState.scriptPlayerInstances[scriptName];
     if (!player)
       player = gameState.scriptPlayerInstances[scriptName] = new ScriptPlayer(script, gameState);
+    else
+      player.reset();
 
     player.play();
     $(".actorchoice").fadeOut(500);
+    $(".turndisplay").fadeOut(500);
   };
 
   if (!script) {
@@ -138,6 +171,8 @@ function init () {
 
   $("#reset").click(resetGame);
   $("#chooseActor").click(chooseActor);
+  $("#endTurn").click(endTurn);
+  $("#beginTurn").click(beginTurn);
 
   $("#actor_rajar").click(function () {
     newGame("rajar");
@@ -153,6 +188,7 @@ function init () {
 
   if (window.location.hash.trim().length > 1) {
     newGame(window.location.hash.substr(1));
+    $(".turndisplay").fadeOut(1);
   }
 };
 

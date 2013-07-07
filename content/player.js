@@ -8,16 +8,23 @@ function ScriptPlayer (script, gameState) {
   this.page = $("#page_template").clone();
   this.page.attr("id", null);
   this.page.appendTo($(".viewport"));
+
+  this.reset();
+};
+
+ScriptPlayer.prototype.reset = function () {
+  this.currentPanelIndex = -1;
+  this.displayedPanelCount = 0;
+  this.previousPanel = null;
 };
 
 ScriptPlayer.prototype.play = function () {
   var previousHeight = (this.page.get()[0]).offsetHeight;
 
-  this.currentPanelIndex = -1;
-  this.displayedPanelCount = 0;
-  this.previousPanel = null;
   this.page.css("min-height", previousHeight + "px");
   this.page.html("");
+
+  this.reset();
 
   window.setTimeout(this.nextPanel.bind(this), NextPanelDelay);
 };
@@ -29,6 +36,8 @@ ScriptPlayer.prototype.playNextScript = function () {
 };
 
 ScriptPlayer.prototype.ended = function () {
+  this.page.css("min-height", "");
+
   window.setTimeout(this.playNextScript.bind(this), NextScriptDelay);
 };
 
