@@ -428,6 +428,7 @@ script.addPanel("Cell_03_06")
     .setPrerequisites("AWK3")
     .reset()
     .setBackground("background_P3.png")
+    .showActor("waiter", "P3_waiter_awkward.png")
     .showActor("pair", "P3_awkward.png")
 
     .setSpeaker("narrator")
@@ -438,6 +439,7 @@ script.addPanel("Cell_03_07")
     .reset()
     .setBackground("background_P3.png")
     //TODO:  SHOULD BE DEEP IN DISCUSSION .showActor("pair", "P3_awkward.png")
+    .showActor("pair", "P3_normal.png")
 
     .setSpeaker("narrator")
     .sayText("They sink deep into a technical discussion and barely notice time passing.");
