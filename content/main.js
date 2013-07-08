@@ -1,6 +1,22 @@
 var gameState = null;
 var seenIntros = Object.create(null);
 
+function changeFavicon (src) {
+  var link = document.createElement('link'),
+  oldLink = document.getElementById('dynamic-favicon');
+  link.id = 'dynamic-favicon';
+  link.rel = 'shortcut icon';
+  link.href = src;
+  
+  var head = document.getElementsByTagName("head")[0];
+
+  if (oldLink) {
+    head.removeChild(oldLink);
+  }
+
+  head.appendChild(link);
+}
+
 function resetGame (evt) {
   evt.preventDefault();
 
@@ -45,6 +61,9 @@ function beginTurn (evt) {
   if (evt)
     evt.preventDefault();
 
+  window.location.hash = "#" + gameState.playerActorName;
+  changeFavicon("icons/" + gameState.playerActorName + ".png");
+
   resetViewport();
   if (!seenIntros[gameState.playerActorName])
     showIntro();
@@ -70,7 +89,6 @@ function updateTurnDisplay () {
 
   $("#beginTurn").text(buttonText);
 
-  window.location.hash = "#" + gameState.playerActorName;
   var cappedName = gameState.playerActorName[0].toUpperCase() + gameState.playerActorName.substr(1);
   $("#playerName").text(cappedName);
 };

@@ -334,4 +334,7 @@ mood: "P2_happy"
     .sayText("They get up to leave the restaurant in silence.");
 
 
+  script.magicBranchingOutro();
+
+  
 })();

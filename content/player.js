@@ -33,6 +33,8 @@ ScriptPlayer.prototype.playNextScript = function () {
   // FIXME: Do something if there is no next script
   if (this.script.nextScript)
     playScript(this.script.nextScript);
+  else if (this.script.hasMagicBranchingOutro)
+    playScript("outro-" + this.gameState.playerActorName);
   else
     $("#buttons").fadeIn(150);
 };
@@ -96,6 +98,8 @@ ScriptPlayer.prototype.nextPanel = function () {
       choice.appendTo(this.children(".choices"));
       return choice;
     };
+
+    bubble.children(".text").text("...");
 
     return bubble;
   };

@@ -3,8 +3,8 @@
 
 
   script.addPanel()
-    .setBackground("rajar-home.png")
-    .setSize(1010, 900)
+    .setBackground("rajarTimeSplash.png")
+    .setSize(1010, 898)
 
 
   script.setNextScript("scene-1");

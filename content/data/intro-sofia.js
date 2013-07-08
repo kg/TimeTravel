@@ -3,13 +3,8 @@
 
 
   script.addPanel()
-    .setBackground("sofia-home.png")
-    .setSize(1010, 900)
-
-
-  script.addPanel()
-    .reset()
-    .setBackground("time-machine.png")
+    .setBackground("sofiaTimeSplash.png")
+    .setSize(747, 475)
 
 
   script.setNextScript("scene-1");

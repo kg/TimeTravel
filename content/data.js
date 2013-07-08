@@ -9,8 +9,13 @@ function Script (scriptName) {
   this.panels = [];
   this.panelsByName = [];
   this.nextScript = null;
+  this.hasMagicBranchingOutro = false;
 
   allScripts[scriptName] = this;
+};
+
+Script.prototype.magicBranchingOutro = function () {
+  this.hasMagicBranchingOutro = true;
 };
 
 Script.prototype.addPanel = function (panelName) {

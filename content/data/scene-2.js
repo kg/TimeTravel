@@ -33,7 +33,7 @@
       label: "I need a drink...",
       dialogue: "I'll have a glass of red wine.",
       mood: "P1_normal",
-      default: true
+
     })
     .showChoice({
       prerequisites: "!AWK1",
@@ -41,13 +41,15 @@
       label: "Red wine sounds nice.",
       dialogue: "Let's get a bottle of red wine.",
       mood: "P1_happy",
-      default: true,
+
     })
     .showChoice({
       key: "S_03",
       label: "Ask what he wants.",
       dialogue: "What do you feel like getting?",
-      mood: "P1_normal"
+      mood: "P1_normal",
+        default: true,
+
     });
 
 
@@ -76,8 +78,8 @@
     .showChoice({
       prerequisites: "Cell_02_02=S_02",
       key: "R_03",
-      label: "No, I just want a glass of wine.",
-      dialogue: "Oh... you don't want a bottle then, huh?",
+      label: "No",
+      dialogue: "No, I just want a glass of wine.",
       default: true,
       mood: "P2_normal",
       flags: "AWK2"
@@ -87,7 +89,6 @@
       key: "R_04",
       label: "Okay.",
       dialogue: "Sure, that sounds great.",
-      default: true,
       mood: "P2_happy",
       flags: "!AWK2"
     })
@@ -96,7 +97,6 @@
       key: "R_05",
       label: "Suggest a bottle of wine.",
       dialogue: "Let's get a bottle of red wine.",
-      default: true,
       mood: "P2_happy",
       flags: "AWK2"
     })
@@ -143,8 +143,8 @@
     .showChoice({
       prerequisites: "Cell_02_03=R_06",
       key: "S_04",
-      label: "Why, I never!",
-      dialogue: "Oh. Ok... I wanted a bottle. Oh well.",
+      label: "Act surprised.",
+      dialogue: "Oh!! Ok... I wanted a bottle. Oh well. Whatev's",
       flags: "AWK2",
       mood: "P1_angry",
       default: true
