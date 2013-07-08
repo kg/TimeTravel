@@ -188,11 +188,9 @@ Panel.prototype.showChoice = function (dict) {
 
       if (existingChoiceKey == dict.key) {
         choice.addClass("selected");
-      } else if (existingChoiceKey && false) {
-        choice.addClass("disabled");
-      } else {
-        choice.click(makeChoiceHandler(player, this.name, dict.key, dict.flags));
       }
+      
+      choice.click(makeChoiceHandler(player, this.name, dict.key, dict.flags));
     }
   });
   return this;

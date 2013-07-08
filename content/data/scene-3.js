@@ -17,7 +17,7 @@
   script.addPanel("Cell_03_01")
     .reset()
     .setBackground("background_P1.png")
-    .setActorMood("sofia", "sofia_P1_normal.png")
+    .setActorMood("sofia", "P1_normal")
 
     .setSpeaker("sofia")
     .showChoice({
@@ -43,7 +43,7 @@
   script.addPanel("Cell_03_02")
     .reset()
     .setBackground("background_P2.png")
-    .setActorMood("rajar", "rajar_P2_normal.png")
+    .setActorMood("rajar", "P2_normal")
 
     .setSpeaker("rajar")
     .showChoice({
@@ -90,8 +90,8 @@ prerequisites: "Cell_03_01=S_02",
 
    .showChoice({
 key: "R_06",
-label: "Discuss difficulties of drinking and driving.",
-dialogue: "All that driving, does that mean you can't just sit and relax with a beer while you're jumping?",
+label: "Discuss difficulties of car-based time travel.",
+dialogue: "All that driving while time travelling, does that mean you can't just sit and relax with a beer while you're jumping? Seems kinda high maintenance to me.",
 prerequisites: "Cell_03_01=S_02",
 default: true,
       mood: "P2_normal"
@@ -120,7 +120,7 @@ prerequisites: "Cell_03_01=S_03",
   script.addPanel("Cell_03_03")
     .reset()
     .setBackground("background_P1.png")
-    .setActorMood("sofia", "sofia_P1_normal.png")
+    .setActorMood("sofia", "P1_normal")
 
     .setSpeaker("sofia")
 
@@ -235,8 +235,8 @@ flags: "AWK3",
 
 .showChoice({
 key: "S_13",
-label: "Comment on hot tub bubbles and the Time Mile Club.",
-dialogue: "I guess if the Time Mile Club actually existed, then those bubbles might be mighty handy for hiding... umm... nudity. If you get what I mean...",
+label: "Comment on hot tub time machine benefits.",
+dialogue: "I suppose a hot tub time machine might have its benefits. Like if the Time Mile Club actually existed, then those bubbles might be mighty handy for hiding... umm... nudity. If you get what I mean...",
 prerequisites: "Cell_03_02=R_06",
 default: true,
 flags: "AWK3",
@@ -290,7 +290,7 @@ flags: ["DISCUSS", "!AWK3"],
   script.addPanel("Cell_03_04")
     .reset()
     .setBackground("background_P2.png")
-    .setActorMood("rajar", "rajar_P2_normal.png")
+    .setActorMood("rajar", "P2_normal")
 
     .setSpeaker("rajar")
 .showChoice({

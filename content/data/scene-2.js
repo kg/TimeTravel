@@ -9,7 +9,7 @@
     .showActor("pair", "P3_normal.png")
 
     .setSpeaker("waiter")
-    .sayText("Would gentleman and madame perchance be inclined to sate their thirsts with a sophisticated libation?");
+    .sayText("Would gentleman and madame perchance be inclined to slake their thirsts with a sophisticated libation?");
 
 
   script.addPanel()
@@ -19,7 +19,7 @@
     .showActor("pair", "P3_awkward.png")
 
     .setSpeaker("waiter")
-    .sayText("Would gentleman and madame perchance be inclined to sate their thirsts with a sophisticated libation?");
+    .sayText("Would gentleman and madame perchance be inclined to slake their thirsts with a sophisticated libation?");
 
 
   script.addPanel("Cell_02_02")
@@ -151,7 +151,7 @@
     })
 
 
-  script.addPanel("Cell_02_05")
+  script.addPanel()
     .setPrerequisites("AWK2")
     .reset()
     .setBackground("background_P3.png")
@@ -160,6 +160,17 @@
 
     .setSpeaker("narrator")
     .sayText("The silence is thick enough to cut with a very, very sharp knife.");
+
+
+  script.addPanel()
+    .setPrerequisites("!AWK2")
+    .reset()
+    .setBackground("background_P3.png")
+    .showActor("waiter", "P3_waiter.png")
+    .showActor("pair", "P3_normal.png")
+
+    .setSpeaker("waiter")
+    .sayText("I shall depart promptly and return forthwith bearing a majestic bounty of our vinest vintages. Also two wine glasses.");
 
 
   script.setNextScript("scene-3");
