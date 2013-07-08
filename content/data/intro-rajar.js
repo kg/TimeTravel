@@ -4,7 +4,7 @@
 
   script.addPanel()
     .setBackground("rajarTimeSplash.png")
-    .setSize(1010, 898)
+    .setSize(397, 584)
 
 
   script.setNextScript("scene-1");

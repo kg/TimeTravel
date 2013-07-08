@@ -4,6 +4,6 @@
 
   script.addPanel()
     .setBackground("rajarEnding.png")
-    .setSize(1010, 898)
+    .setSize(1010, 818)
 
 })();
