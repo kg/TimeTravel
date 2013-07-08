@@ -62,6 +62,9 @@ ScriptPlayer.prototype.nextPanel = function () {
   if (panel.isReset)
     this.previousPanel = null;
 
+  // Clear any flags previously set by this panel.
+  this.gameState.clearFlagSet(panel.name);
+
   // FIXME: Inherit some state from previous panel - background, etc.
   var displayPanel = 
     (this.previousPanel || $("#panel_template")).clone();

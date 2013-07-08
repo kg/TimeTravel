@@ -92,14 +92,6 @@ Panel.prototype.setSpeaker = function (actorName) {
   return this;
 };
 
-Panel.prototype.setFlags = function (/* ... flags ... */) {
-  var flags = Array.prototype.slice.call(arguments);
-  this.commands.push(function (displayPanel, player) {
-    player.gameState.setFlags(flags);
-  });
-  return this;
-};
-
 // Says some text in a speech bubble
 Panel.prototype.sayText = function (text) {
   this.commands.push(function (displayPanel) {
@@ -129,11 +121,9 @@ Panel.prototype.showChoice = function (dict) {
 
     var isMakingChoice = this.commandState.speaker === player.gameState.playerActorName;
 
-    if (dict.default) {
+    if (dict.default)
       player.gameState.setDefaultChoice(this.name, dict.key);
-      player.gameState.setDefaultFlags(dict.flags);
-    }
-    
+
     var existingChoiceKey = player.gameState.getChoice(this.name, false);
     var existingChoice = null;
 
@@ -141,8 +131,18 @@ Panel.prototype.showChoice = function (dict) {
       existingChoice = this.choices[existingChoiceKey] || null;
 
     if (existingChoice && !player.gameState.check(existingChoice.prerequisites)) {
-      delete player.gameState.choices[existingChoiceKey];
+      player.gameState.clearChoice(this.name);
     }
+    
+    var actualChoiceKey = player.gameState.getChoice(this.name, true);
+    var actualChoice = null;
+
+    if (actualChoiceKey)
+      actualChoice = this.choices[actualChoiceKey] || null;
+
+    if (actualChoice)
+      player.gameState.setFlags(this.name, actualChoice.flags);
+
   });
 
   this.commands.push(function (displayPanel, player) {
@@ -235,9 +235,6 @@ Panel.prototype.$checkPrerequisites = function (gameState) {
 function makeChoiceHandler (player, panelName, choiceKey, flagsToSet) {
   return function () {
     player.gameState.setChoice(panelName, choiceKey);
-
-    if (flagsToSet)
-      player.gameState.setFlags(flagsToSet);
 
     player.play();
   };
