@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   var script = new Script("scene-3");
 
 // Shows a choice in a speech bubble. 
@@ -76,7 +76,7 @@ key: "R_04",
 label: "Ask about the 88mph limit.",
 dialogue: "Is the 88 mph speed limit for car based time travel really a thing?",
 prerequisites: "Cell_03_01=S_02",
-      mood: "P2_ normal"
+      mood: "P2_normal"
 })
 
 
