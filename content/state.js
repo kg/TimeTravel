@@ -15,8 +15,6 @@ GameState.prototype.getChoice = function (choiceName, includeDefaults) {
   if (!choice)
     choice = null;
 
-  console.log("getChoice(" + choiceName + ", " + !!includeDefaults + ")=" + choice);
-
   return choice;
 };
 

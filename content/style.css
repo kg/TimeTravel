@@ -3,9 +3,12 @@ html, body {
   padding: 0px;
   background-color: black;
   color: white;
+  overflow: hidden;
+}
+
+html, body, button {
   font-family: Candara, Times New Roman, serif;
   font-size: 16pt;
-  overflow: hidden;
 }
 
 * {
@@ -172,12 +175,14 @@ button {
   background-color: black;
   border-color: white;
   color: white;
-  font-size: 14pt;
+  font-size: 16pt;
   display: inline-block;
   text-align: center;
 }
 
-.actorchoice button {
+.actorchoice button, .turndisplay button {
+  min-width: 200px;
+  min-height: 48px;
   padding: 4px;
 }
 

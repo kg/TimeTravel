@@ -6,5 +6,6 @@
     .setBackground("rajar-home.png")
     .setSize(1010, 900)
 
+
   script.setNextScript("scene-1");
 })();

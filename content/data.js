@@ -128,6 +128,16 @@ Panel.prototype.showChoice = function (dict) {
       player.gameState.setDefaultChoice(this.name, dict.key);
       player.gameState.setDefaultFlags(dict.flags);
     }
+    
+    var existingChoiceKey = player.gameState.getChoice(this.name, false);
+    var existingChoice = null;
+
+    if (existingChoiceKey)
+      existingChoice = this.choices[existingChoiceKey] || null;
+
+    if (existingChoice && !player.gameState.check(existingChoice.prerequisites)) {
+      delete player.gameState.choices[existingChoiceKey];
+    }
   });
 
   this.commands.push(function (displayPanel, player) {
@@ -144,13 +154,8 @@ Panel.prototype.showChoice = function (dict) {
     if (existingChoiceKey)
       existingChoice = this.choices[existingChoiceKey] || null;
 
-    if (existingChoice && !player.gameState.check(existingChoice.prerequisites)) {
-      existingChoiceKey = player.gameState.defaultChoices[this.name];
-      existingChoice = this.choices[existingChoiceKey] || null;
-    }
-
     if (!isMakingChoice) {
-      if (!dict.default && (existingChoiceKey !== dict.key))
+      if (existingChoiceKey && (existingChoiceKey !== dict.key))
         return;
 
       this.commandState.bubble.children(".text").text(dict.dialogue);
