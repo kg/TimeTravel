@@ -447,4 +447,6 @@ script.addPanel("Cell_03_07")
 
 ;
 
+  script.setNextScript("scene-4");
+
 })();
