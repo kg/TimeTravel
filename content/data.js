@@ -216,6 +216,7 @@ Panel.prototype.setClass = function (className) {
   return this;  
 };
 
+// Hack for image-only panels
 Panel.prototype.setSize = function (width, height) {
   this.hasSize = true;
 
@@ -226,6 +227,19 @@ Panel.prototype.setSize = function (width, height) {
 
   return this;  
 };  
+
+// Hack for sofia's license plate
+Panel.prototype.addLicensePlate = function (plateNumber) {
+  this.commands.push(function (displayPanel, player) {
+    var plate = $(document.createElement("span"));
+
+    plate.attr("id", "licenseplate_" + plateNumber);
+    plate.addClass("licenseplate");
+    plate.text(getLicensePlateText());
+
+    plate.appendTo(displayPanel);
+  });
+};
 
 
 Panel.prototype.$checkPrerequisites = function (gameState) {

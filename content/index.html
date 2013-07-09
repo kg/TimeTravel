@@ -3,17 +3,18 @@
   <head>
     <title>Back to the First Date</title>
 
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="loading.css">
-    <link rel="stylesheet" href="content-styles.css">
+    <link rel="stylesheet" href="style.css?v=102">
+    <link rel="stylesheet" href="content-styles.css?v=102">
     
     <link href='http://fonts.googleapis.com/css?family=Kite+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Share+Tech+Mono' rel='stylesheet' type='text/css'>
 
     <script src="jquery.min.js"></script>
-    <script src="main.js?v=101"></script>
-    <script src="data.js?v=101"></script>
-    <script src="player.js?v=101"></script>
-    <script src="state.js?v=101"></script>
+    <script src="main.js?v=102"></script>
+    <script src="data.js?v=102"></script>
+    <script src="player.js?v=102"></script>
+    <script src="state.js?v=102"></script>
   </head>
   <body>
     <div class="viewport">
@@ -21,9 +22,13 @@
 
     <div class="introcontainer">
       <div class="introimage">
-        <img src="images/introStart_sofia.png" id="sofia_intro"style="display: none">
+        <div id="sofia_intro" style="display: none; background-image: url('images/introStart_sofia.png'); width: 1050px; height: 2768px;">
+          <span id="licenseplate_1" class="licenseplate"></span>
+          <span id="licenseplate_2" class="licenseplate"></span>
+          <span id="licenseplate_3" class="licenseplate"></span>
+        </div>
 
-        <img src="images/introStart_rajar.png" id="rajar_intro"style="display: none">
+        <div id="rajar_intro" style="display: none; background-image: url('images/introStart_rajar.png'); width: 1021px; height: 2477px;"></div>
       </div>
 
       <br><br>
@@ -42,7 +47,7 @@
     <div class="actorchoice">
       <img src="images/logo.png">
       <br>
-      <span style="font-size: 9pt">Version 1.01</span><br><br>
+      <span style="font-size: 9pt">Version 1.02</span><br><br>
       CHOOSE YOUR FATE<br><br>
       <button id="actor_rajar">Rajar</button>
       <button id="actor_sofia">Sofia</button>

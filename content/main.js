@@ -1,5 +1,6 @@
 var gameState = null;
 var seenIntros = Object.create(null);
+var licensePlateCounter = 0;
 
 function changeFavicon (src) {
   var link = document.createElement('link'),
@@ -16,6 +17,19 @@ function changeFavicon (src) {
 
   head.appendChild(link);
 }
+
+function getLicensePlateText () {
+  var counterText = licensePlateCounter.toString();
+  while (counterText.length < 2)
+    counterText = "0" + counterText;
+  return "OKABE " + counterText;
+}
+
+function updateLicensePlates () {
+  var plates = $(".licenseplate");
+  var plateText = getLicensePlateText();
+  plates.text(plateText);
+};
 
 function resetGame (evt) {
   evt.preventDefault();
@@ -49,7 +63,7 @@ function closeIntro (evt) {
   $(".introcontainer").fadeOut(250);
 
   window.setTimeout(function () {
-    $(".introimage img").css("display", "none");
+    $(".introimage div").css("display", "none");
     $("html").css("overflow", "auto");
     playScript("intro-" + gameState.playerActorName);
   }, 250);
@@ -87,6 +101,8 @@ function updateTurnDisplay () {
     Math.floor(Math.random() * buttonTexts.length)
   ];
 
+  updateLicensePlates();
+
   $("#beginTurn").text(buttonText);
 
   var cappedName = gameState.playerActorName[0].toUpperCase() + gameState.playerActorName.substr(1);
@@ -101,6 +117,8 @@ function endTurn (evt) {
   } else {
     gameState.playerActorName = "rajar";
   }
+
+  licensePlateCounter += 1;
 
   updateTurnDisplay();
 
