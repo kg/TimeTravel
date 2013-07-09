@@ -1,3 +1,5 @@
+var version = 104;
+
 var gameState = null;
 var seenIntros = Object.create(null);
 var licensePlateCounter = 0;
@@ -275,7 +277,7 @@ function loadGlobalScript (uri, onComplete) {
 };
 
 function playScript (scriptName) {
-  var scriptUri = "data/" + scriptName + ".js";
+  var scriptUri = "data/" + scriptName + ".js?v=" + version;
 
   var script = allScripts[scriptName];
 

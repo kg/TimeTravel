@@ -137,7 +137,7 @@ flags: "AWK3",
 .showChoice({
 key: "S_02",
 label: "Agree and...",
-dialogue: "I hadn't considered that! It's like if the flying train in \"Back to the Future\" having VTOL capabilities. As if!",
+dialogue: "I hadn't considered that! It's like the flying train in \"Back to the Future\" having VTOL capabilities. As if!",
 prerequisites: "Cell_03_02=R_01",
       mood: "P1_happy"
 })

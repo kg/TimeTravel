@@ -8,7 +8,7 @@
     .showActor("pair", "P3_normal.png")
 
     .setSpeaker("waiter")
-    .sayText("I would be pleased to bequeath you a selection from our marvelous dessert menu. Diversely, I can bestow an invoice upon you to enable settling of accounts.");
+    .sayText("I would be pleased to bequeath you a selection from our marvelous dessert menu. In the interim, I have affixed an invoice upon your table that enables the settling of accounts.");
 
 
   script.addPanel("Cell_06_01")

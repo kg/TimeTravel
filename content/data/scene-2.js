@@ -170,7 +170,7 @@
     .showActor("pair", "P3_normal.png")
 
     .setSpeaker("waiter")
-    .sayText("I shall depart promptly and return forthwith bearing a majestic bounty of our vinest vintages. Also two wine glasses.");
+    .sayText("I shall depart promptly and return forthwith bearing a majestic bounty of our finest vintages. Also two wine glasses.");
 
 
   script.setNextScript("scene-3");
