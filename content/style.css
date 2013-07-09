@@ -312,3 +312,30 @@ button {
   -moz-transform: rotateZ(-8.5deg) rotateX(0deg) rotateY(0deg) scaleX(0.7) scaleY(0.9); 
   transform: rotateZ(-8.5deg) rotateX(0deg) rotateY(0deg) scaleX(0.7) scaleY(0.9); 
 }
+
+.credits {
+}
+
+.credits table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.credits th {
+  text-align: left;
+  padding-right: 8px;
+  margin-right: 8px;
+}
+
+.credits td {
+  text-align: right;
+  padding-left: 8px;
+}
+
+.credits a, .credits a:visited {
+  color: silver;
+}
+
+.credits a:hover {
+  color: white;
+}

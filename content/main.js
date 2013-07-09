@@ -18,6 +18,59 @@ function changeFavicon (src) {
   head.appendChild(link);
 }
 
+function fisherYates (array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+function populateCredits () {
+  var credits = [
+    ["K. Gadd", "luminance.org", "antumbral"],
+    ["Jenn Sandercock", "www.jennsand.com", "jennsandercock"],
+    ["Jolie Menzel", null, "joliemenzel"],
+    ["Jung-Ha Kim", null, "RedStarship"],
+    ["Colin Bayer", null, "vogon"],
+    ["Cliff Warren", null, null],
+    ["Tiff Chow", null, "tiffchow"]
+  ];
+
+  fisherYates(credits);
+  var container = $(".credits");
+  var html = "<table>";
+
+  for (var i = 0, l = credits.length; i < l; i++) {
+    var credit = credits[i];
+
+    var hasUrl = credit[1] !== null;
+    var hasTwitter = credit[2] !== null;
+
+    html += "<tr><th>";
+
+    if (hasUrl)
+      html += "<a href='http://" + credit[1] + "' target='_blank'>";
+
+    html += credit[0];
+
+    if (hasUrl)
+      html += "</a>";
+
+    html += "</th>";
+
+    if (hasTwitter)
+      html += "<td><a href='http://www.twitter.com/" + credit[2] + "' target='_blank'>@" + credit[2] + "</a></td>";
+
+    html += "</tr>";
+  }
+
+  html += "</table>";
+
+  container.html(html);
+}
+
 function getLicensePlateText () {
   var counterText = licensePlateCounter.toString();
   while (counterText.length < 2)
@@ -257,6 +310,8 @@ function playScript (scriptName) {
 };
 
 function init () {
+  populateCredits();
+
   $(".loading").fadeOut(250);
 
   $("#reset").click(resetGame);
